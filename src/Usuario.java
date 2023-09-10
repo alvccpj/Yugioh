@@ -1,4 +1,4 @@
-public class Usuario {
+public class Usuario extends Inventario{
     private String user;
     private String cpf;
     private String senha;
@@ -8,7 +8,7 @@ public class Usuario {
     private int nivel = 1;
     private Inventario inventario;
     private Deck decks[] = new Deck[5];
-    private int cardcoins = 0;
+    private int cardcoinsUsuario = 0;
 
     public Usuario() {
 
@@ -23,7 +23,7 @@ public class Usuario {
         this.email = email;
         this.nivel = nivel;
         this.inventario = new Inventario();
-        this.cardcoins = cardcoins;
+        this.cardcoinsUsuario = cardcoins;
     }
 
     public String getUser() {
@@ -98,11 +98,11 @@ public class Usuario {
         this.decks = decks;
     }
 
-    public int getCardcoins() {
-        return cardcoins;
+    public int getCardcoinsUsuario() {
+        return cardcoinsUsuario;
     }
 
-    public void setCardcoins(int cardcoins) {
-        this.cardcoins = cardcoins;
+    public void setCardcoinsUsuario(int cardcoinsUsuario) {
+        this.cardcoinsUsuario = cardcoinsUsuario;
     }
 }
