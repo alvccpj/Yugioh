@@ -105,4 +105,6 @@ public class Usuario extends Inventario{
     public void setCardcoinsUsuario(int cardcoinsUsuario) {
         this.cardcoinsUsuario = cardcoinsUsuario;
     }
+
+
 }
