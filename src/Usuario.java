@@ -22,7 +22,7 @@ public class Usuario {
         this.cardcoinsUsuario = cardcoins;
     }
 
-    public String getUser() {
+    public String getUsuario() {
         return user;
     }
 
@@ -115,10 +115,10 @@ public class Usuario {
         for (int i = 0; i < decks.length; i++) {
             if (decks[i] != null && decks[i].equals(deckParaRemover)) {
                 decks[i] = null;
-                return true; // Deck removido com sucesso
+                return true; 
             }
         }
-        return false; // Deck não encontrado
+        return false; 
     }
 
 }
