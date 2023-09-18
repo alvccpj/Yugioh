@@ -55,4 +55,8 @@ public class Inventario {
             }
         }
     }
+
+    public int contarCartasIguais(Carta carta) {
+        return 0;
+    }
 }
