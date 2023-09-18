@@ -1,19 +1,19 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class Lobby {
-    private List<Usuario> jogadores;
+    private Usuario[] jogadores;
     private int maxJogadoresLobby;
     private String modalidadeJogo;
+    private int numJogadores;
 
     public Lobby(int maxJogadoresLobby) {
-        this.jogadores = new ArrayList<>();
+        this.jogadores = new Usuario[maxJogadoresLobby];
         this.maxJogadoresLobby = maxJogadoresLobby;
+        this.numJogadores = 0;
     }
 
     public void entrarNoLobby(Usuario jogador) {
-        if (jogadores.size() < maxJogadoresLobby) {
-            jogadores.add(jogador);
+        if (numJogadores < maxJogadoresLobby) {
+            jogadores[numJogadores] = jogador;
+            numJogadores++;
             System.out.println(jogador.getUsuario() + " entrou no lobby.");
             tentarEncontrarAdversario(jogador);
         } else {
@@ -23,10 +23,10 @@ public class Lobby {
 
     public void tentarEncontrarAdversario(Usuario jogador) {
         int nivelJogador = jogador.getNivel();
-        String modalidadeJogo = "Jogo Normal"; 
+        modalidadeJogo = "Jogo Normal"; 
 
         for (Usuario adversario : jogadores) {
-            if (adversario != jogador && adversario.getNivel() == nivelJogador && modalidadeJogo.equals("Jogo Normal")) {
+            if (adversario != null && adversario != jogador && adversario.getNivel() == nivelJogador && modalidadeJogo.equals("Jogo Normal")) {
                 System.out.println("Partida encontrada!");
                 iniciarArena(jogador, adversario, modalidadeJogo);
                 return;
@@ -39,5 +39,5 @@ public class Lobby {
     public void iniciarArena(Usuario jogador1, Usuario jogador2, String modalidadeJogo) {
         Arena arena = new Arena(jogador1, jogador2, modalidadeJogo);
         arena.iniciarJogo();
-} }
-
+    }
+}

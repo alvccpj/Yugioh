@@ -1,5 +1,5 @@
 public class Usuario {
-    private String user;
+    private String usuario;
     private String cpf;
     private String senha;
     private int idade;
@@ -11,7 +11,7 @@ public class Usuario {
     private int cardcoinsUsuario = 0;
 
     public Usuario(String user, String cpf, String senha, int idade, char sexo, String email, int nivel, Inventario inventario, int cardcoins) {
-        this.user = user;
+        this.usuario = user;
         this.cpf = cpf;
         this.senha = senha;
         this.idade = idade;
@@ -23,11 +23,11 @@ public class Usuario {
     }
 
     public String getUsuario() {
-        return user;
+        return usuario;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getCpf() {
