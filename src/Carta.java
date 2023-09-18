@@ -108,4 +108,5 @@ public class Carta extends Deck {
         MUITO_RARA,
         EPICA
     }
+
 }
