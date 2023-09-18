@@ -4,9 +4,9 @@ public class Inventario {
     private int cardcoinsInventario;
 
     public Inventario() {
-        this.cartas = cartas;
-        this.nivelAtual = nivelAtual;
-        this.cardcoinsInventario = cardcoinsInventario;
+        this.cartas = new Carta[200];
+        this.nivelAtual = 0;
+        this.cardcoinsInventario = 0;
     }
 
     public Carta[] getCartas() {
