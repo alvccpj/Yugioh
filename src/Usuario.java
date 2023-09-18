@@ -1,4 +1,4 @@
-public class Usuario extends Inventario {
+public class Usuario {
     private String user;
     private String cpf;
     private String senha;
@@ -100,6 +100,25 @@ public class Usuario extends Inventario {
 
     public void setCardcoinsUsuario(int cardcoinsUsuario) {
         this.cardcoinsUsuario = cardcoinsUsuario;
+    }
+
+    public void adicionarDeck(Deck novoDeck) {
+        for (int i = 0; i < decks.length; i++) {
+            if (decks[i] == null) {
+                decks[i] = novoDeck;
+                break;
+            }
+        }
+    }
+
+    public boolean removerDeck(Deck deckParaRemover) {
+        for (int i = 0; i < decks.length; i++) {
+            if (decks[i] != null && decks[i].equals(deckParaRemover)) {
+                decks[i] = null;
+                return true; // Deck removido com sucesso
+            }
+        }
+        return false; // Deck não encontrado
     }
 
 }
