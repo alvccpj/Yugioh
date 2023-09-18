@@ -1,109 +1,98 @@
-public class Carta extends Deck {
-    private String nomeCarta;
-    private String imagem;
-    private String tipo;
-    private String raridade;
-    private int ataque;
-    private int defesa;
-    private int custo;
-    private String habilidade;
-    private int quantidade;
-    private int mana;
+public class Carta extends Deck{
+   private String nome;
+   private String imagem;
+   private String tipo;
+   private String raridade;
+   private int ataque;
+   private int defesa;
+   private int custo;
+   private String habilidade;
+   private int quantidade;
 
-    public Carta(String nome, String imagem, String tipo, String raridade, int ataque, int defesa, int custo, String habilidade, int quantidade, int mana) {
-        this.nomeCarta = nome;
-        this.imagem = imagem;
-        this.tipo = tipo;
-        this.raridade = raridade;
-        this.ataque = ataque;
-        this.defesa = defesa;
-        this.custo = custo;
-        this.habilidade = habilidade;
-        this.quantidade = quantidade;
-        this.mana = mana;
-    }
+   public Carta() {
+   }
 
-    public String getNomeCarta() {
-        return nomeCarta;
-    }
+   public Carta(String nome, String imagem, String tipo, String raridade, int ataque, int defesa, int custo, String habilidade, int quantidade) {
+      this.nome = nome;
+      this.imagem = imagem;
+      this.tipo = tipo;
+      this.raridade = raridade;
+      this.ataque = ataque;
+      this.defesa = defesa;
+      this.custo = custo;
+      this.habilidade = habilidade;
+      this.quantidade = quantidade;
+   }
 
-    public void setNomeCarta(String nomeCarta) {
-        this.nomeCarta = nomeCarta;
-    }
+   public String getNome() {
+      return nome;
+   }
 
-    public String getImagem() {
-        return imagem;
-    }
+   public void setNome(String nome) {
+      this.nome = nome;
+   }
 
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
-    }
+   public String getImagem() {
+      return imagem;
+   }
 
-    public String getTipo() {
-        return tipo;
-    }
+   public void setImagem(String imagem) {
+      this.imagem = imagem;
+   }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
+   public String getTipo() {
+      return tipo;
+   }
 
-    public String getRaridade() {
-        return raridade;
-    }
+   public void setTipo(String tipo) {
+      this.tipo = tipo;
+   }
 
-    public void setRaridade(String raridade) {
-        this.raridade = raridade;
-    }
+   public String getRaridade() {
+      return raridade;
+   }
 
-    public int getAtaque() {
-        return ataque;
-    }
+   public void setRaridade(String raridade) {
+      this.raridade = raridade;
+   }
 
-    public void setAtaque(int ataque) {
-        this.ataque = ataque;
-    }
+   public int getAtaque() {
+      return ataque;
+   }
 
-    public int getDefesa() {
-        return defesa;
-    }
+   public void setAtaque(int ataque) {
+      this.ataque = ataque;
+   }
 
-    public void setDefesa(int defesa) {
-        this.defesa = defesa;
-    }
+   public int getDefesa() {
+      return defesa;
+   }
 
-    public int getCusto() {
-        return custo;
-    }
+   public void setDefesa(int defesa) {
+      this.defesa = defesa;
+   }
 
-    public void setCusto(int custo) {
-        this.custo = custo;
-    }
+   public int getCusto() {
+      return custo;
+   }
 
-    public String getHabilidade() {
-        return habilidade;
-    }
+   public void setCusto(int custo) {
+      this.custo = custo;
+   }
 
-    public void setHabilidade(String habilidade) {
-        this.habilidade = habilidade;
-    }
+   public String getHabilidade() {
+      return habilidade;
+   }
 
-    public void getQuantidade(int quantidade) {
-        this.quantidade = quantidade;
-    }
+   public void setHabilidade(String habilidade) {
+      this.habilidade = habilidade;
+   }
 
-    public void setQuantidade(int quantidade) {
-        if (quantidade >= 0 && (quantidade <= 3 || this.mana != 0)) {
-            this.quantidade = quantidade;
-        } else {
-            throw new IllegalArgumentException("A quantidade deve estar entre 0 e 3, exceto para mana.");
-        }
-    }
+   public int getQuantidade() {
+      return quantidade;
+   }
 
-    public enum Raridade {
-        COMUM,
-        INCOMUM,
-        RARA,
-        MUITO_RARA,
-        EPICA
-    }
+   public void setQuantidade(int quantidade) {
+      this.quantidade = quantidade;
+   }
 }

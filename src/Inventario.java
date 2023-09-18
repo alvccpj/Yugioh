@@ -36,5 +36,8 @@ public class Inventario {
 
     public void setCardcoinsUsuario(int cardcoinsUsuario) {
         this.cardcoinsInventario = cardcoinsUsuario;
-    }
+    
+}
+
+
 }
