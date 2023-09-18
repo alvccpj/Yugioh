@@ -36,8 +36,28 @@ public class Inventario {
 
     public void setCardcoinsUsuario(int cardcoinsUsuario) {
         this.cardcoinsInventario = cardcoinsUsuario;
-    
-}
+    }
 
+    public boolean removerCartaDoInventario(Carta carta) {
+        if (carta != null) {
+            for (int i = 0; i < cartas.length; i++) {
+                if (cartas[i] != null && cartas[i].equals(carta)) {
+                    cartas[i] = null;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
+    public void adicionarCartaAoInventario(Carta carta) {
+        if (carta != null) {
+            for (int i = 0; i < cartas.length; i++) {
+                if (cartas[i] == null) {
+                    cartas[i] = carta;
+                    break;
+                }
+            }
+        }
+    }
 }
