@@ -1,4 +1,4 @@
-public class Usuario extends Inventario{
+public class Usuario {
     private String user;
     private String cpf;
     private String senha;
@@ -9,10 +9,6 @@ public class Usuario extends Inventario{
     private Inventario inventario;
     private Deck decks[] = new Deck[5];
     private int cardcoinsUsuario = 0;
-
-    public Usuario() {
-
-    }
 
     public Usuario(String user, String cpf, String senha, int idade, char sexo, String email, int nivel, Inventario inventario, int cardcoins) {
         this.user = user;
@@ -106,5 +102,23 @@ public class Usuario extends Inventario{
         this.cardcoinsUsuario = cardcoinsUsuario;
     }
 
+    public void adicionarDeck(Deck novoDeck) {
+        for (int i = 0; i < decks.length; i++) {
+            if (decks[i] == null) {
+                decks[i] = novoDeck;
+                break;
+            }
+        }
+    }
+
+    public boolean removerDeck(Deck deckParaRemover) {
+        for (int i = 0; i < decks.length; i++) {
+            if (decks[i] != null && decks[i].equals(deckParaRemover)) {
+                decks[i] = null;
+                return true; // Deck removido com sucesso
+            }
+        }
+        return false; // Deck não encontrado
+    }
 
 }

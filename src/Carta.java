@@ -1,19 +1,17 @@
-public class Carta extends Deck {
-    private String nome;
+public class Carta {
+    private String nomeCarta;
     private String imagem;
     private String tipo;
-    private Raridade raridade;
+    private String raridade;
     private int ataque;
     private int defesa;
     private int custo;
     private String habilidade;
     private int quantidade;
+    private int mana;
 
-    public Carta() {
-    }
-
-    public Carta(String nome, String imagem, String tipo, Raridade raridade, int ataque, int defesa, int custo, String habilidade, int quantidade) {
-        this.nome = nome;
+    public Carta(String nome, String imagem, String tipo, String raridade, int ataque, int defesa, int custo, String habilidade, int quantidade, int mana) {
+        this.nomeCarta = nome;
         this.imagem = imagem;
         this.tipo = tipo;
         this.raridade = raridade;
@@ -21,15 +19,16 @@ public class Carta extends Deck {
         this.defesa = defesa;
         this.custo = custo;
         this.habilidade = habilidade;
-        setQuantidade(quantidade);
+        this.quantidade = quantidade;
+        this.mana = mana;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeCarta() {
+        return nomeCarta;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeCarta(String nomeCarta) {
+        this.nomeCarta = nomeCarta;
     }
 
     public String getImagem() {
@@ -48,11 +47,11 @@ public class Carta extends Deck {
         this.tipo = tipo;
     }
 
-    public Raridade getRaridade() {
+    public String getRaridade() {
         return raridade;
     }
 
-    public void setRaridade(Raridade raridade) {
+    public void setRaridade(String raridade) {
         this.raridade = raridade;
     }
 
@@ -88,20 +87,27 @@ public class Carta extends Deck {
         this.habilidade = habilidade;
     }
 
-    public int getQuantidade() {
-        return quantidade;
+    public void getQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public int getMana() {
+        return mana;
+    }
+
+    public void setMana(int mana) {
+        this.mana = mana;
     }
 
     public void setQuantidade(int quantidade) {
-        if (quantidade >= 0 && quantidade <= 3) {
+        if (quantidade >= 0 && (quantidade <= 3 || this.mana != 0)) {
             this.quantidade = quantidade;
         } else {
-            throw new IllegalArgumentException("A quantidade deve estar entre 0 e 3.");
+            throw new IllegalArgumentException("A quantidade deve estar entre 0 e 3, exceto para mana.");
         }
     }
 
-    // Enum para Raridade
-    public enum Raridade {
+    private enum Raridade {
         COMUM,
         INCOMUM,
         RARA,
@@ -110,3 +116,4 @@ public class Carta extends Deck {
     }
 
 }
+
