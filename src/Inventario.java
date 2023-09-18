@@ -1,4 +1,4 @@
-public class Inventario extends Carta{
+public class Inventario {
     private Carta cartas[] = new Carta[200];
     private int nivelAtual;
     private int cardcoinsInventario;

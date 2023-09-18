@@ -1,4 +1,4 @@
-public class Usuario extends Inventario{
+public class Usuario extends Inventario {
     private String user;
     private String cpf;
     private String senha;
@@ -9,10 +9,6 @@ public class Usuario extends Inventario{
     private Inventario inventario;
     private Deck decks[] = new Deck[5];
     private int cardcoinsUsuario = 0;
-
-    public Usuario() {
-
-    }
 
     public Usuario(String user, String cpf, String senha, int idade, char sexo, String email, int nivel, Inventario inventario, int cardcoins) {
         this.user = user;
@@ -105,4 +101,5 @@ public class Usuario extends Inventario{
     public void setCardcoinsUsuario(int cardcoinsUsuario) {
         this.cardcoinsUsuario = cardcoinsUsuario;
     }
+
 }
