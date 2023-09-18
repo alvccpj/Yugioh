@@ -25,17 +25,16 @@ public class Loja {
         this.codigoVerificador = codigoVerificador;
     }
 
-    public void compraDeBooster(Usuario usuario, Inventario Inventario) {
-        int precoBooster = 10; // Preço do booster em cardcoins (ajuste conforme necessário)
+    public void compraDeBooster(Usuario usuario, Inventario inventario) {
+        int precoBooster = 10; 
 
         if (usuario.getCardcoinsUsuario() >= precoBooster) {
             usuario.setCardcoinsUsuario(usuario.getCardcoinsUsuario() - precoBooster);
 
-            Inventario inventario = usuario.getInventario();
             Carta[] boosterPack = gerarCartaAleatoria();
 
             for (Carta cartaAleatoria : boosterPack) {
-                adicionarCartaAoInventario(inventario, cartaAleatoria, usuario, inventario);
+                adicionarCartaAoInventario(inventario, cartaAleatoria, usuario);
             }
 
             System.out.println("BOOSTER COMPRADO COM SUCESSO!!");
@@ -44,32 +43,34 @@ public class Loja {
         }
     }
 
-    public Carta[] gerarCartaAleatoria(Carta carta) {
+    public Carta[] gerarCartaAleatoria() {
         int qtdCardsBoosterPack = 12;
         Carta[] boosterPack = new Carta[qtdCardsBoosterPack];
 
         for (int posBoosterPack = 0; posBoosterPack < qtdCardsBoosterPack; posBoosterPack++) {
-            boosterPack[posBoosterPack] = carta;
-            
+            //fazer ainda a logica
+            boosterPack[posBoosterPack] = new Carta("Carta Aleatória " + (posBoosterPack + 1), "imagem", "tipo", "raridade", 2, 3, 5, "ability", 0, 0);
         }
         return boosterPack;
     }
+
     public void adicionarCartaAoInventario(Inventario inventario, Carta carta, Usuario usuario) {
-    int limiteCartasRepetidas = 3; // Limite de cartas repetidas permitidas
+        int limiteCartasRepetidas = 3; 
 
-    // Verificar se o usuário já possui o limite de cartas repetidas da mesma carta
-    int quantidadeCartaNoInventario = usuario.getInventario().contarCartasIguais(carta);
-    if (quantidadeCartaNoInventario < limiteCartasRepetidas) {
-        // Adicionar a carta ao inventário
-        inventario.adicionarCartaAoInventario(carta);
+        int quantidadeCartaNoInventario = inventario.contarCartasIguais(carta);
+        if (quantidadeCartaNoInventario < limiteCartasRepetidas) {
+            inventario.adicionarCartaAoInventario(carta);
 
-        System.out.println("Carta Adicionada ao Inventario: " + carta.getNomeCarta());
-    } else {
-        // O usuário já possui o limite de cartas repetidas, ganhar Cardacoins
-        int valorCartasRepetidas = calcularValorCartasRepetidas(carta, quantidadeCartaNoInventario);
-        usuario.setCardcoinsUsuario(usuario.getCardcoinsUsuario() + valorCartasRepetidas);
-        System.out.println("Você já possui o limite de cartas repetidas. Ganhou " + valorCartasRepetidas + " Cardacoins.");
+            System.out.println("Carta Adicionada ao Inventario: " + carta.getNomeCarta());
+        } else {
+            int valorCartasRepetidas = calcularValorCartasRepetidas(carta);
+            usuario.setCardcoinsUsuario(usuario.getCardcoinsUsuario() + valorCartasRepetidas);
+            System.out.println("Você já possui o limite de cartas repetidas. Ganhou " + valorCartasRepetidas + " Cardacoins.");
+        }
     }
-}
 
+    private int calcularValorCartasRepetidas(Carta carta) {
+        
+        return 10; 
+    }
 }
