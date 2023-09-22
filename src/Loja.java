@@ -37,9 +37,9 @@ public class Loja {
                 adicionarCartaAoInventario(inventario, cartaAleatoria, usuario);
             }
 
-            System.out.println("BOOSTER COMPRADO COM SUCESSO!!");
+            System.out.println("Booster comprado com sucesso!");
         } else {
-            System.out.println("VOCÊ NÃO TEM CARDCOINS SUFICIENTES PARA COMPRAR O BOOSTER!");
+            System.out.println("Você não tem cardcoins o suficiente para comprar o Booster!");
         }
     }
 
