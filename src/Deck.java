@@ -25,9 +25,7 @@ public class Deck {
         }
     }
 
-    private boolean verificarCartasRepetidas() {
-        int count = 0;
-
+   public boolean verificarCartasRepetidas() {
         for (int i = 0; i < cartas.length; i++) {
             Carta cartaAtual = cartas[i];
 
