@@ -22,7 +22,9 @@ public class Carta {
         this.quantidade = quantidade;
         this.mana = mana;
     }
-
+    public enum Raridade {
+        COMUM, INCOMUM, RARA, MUITO_RARA, EPICA 
+    }
     public String getNomeCarta() {
         return nomeCarta;
     }
@@ -99,6 +101,10 @@ public class Carta {
         this.mana = mana;
     }
 
+    public int getQuantidade() {
+        return quantidade;
+    }
+
     public void setQuantidade(int quantidade) {
         if (quantidade >= 0 && (quantidade <= 3 || this.mana != 0)) {
             this.quantidade = quantidade;
@@ -107,13 +113,6 @@ public class Carta {
         }
     }
 
-    private enum Raridade {
-        COMUM,
-        INCOMUM,
-        RARA,
-        MUITO_RARA,
-        EPICA
-    }
+    
 
 }
-

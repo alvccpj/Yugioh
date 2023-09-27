@@ -8,10 +8,10 @@ public class Usuario {
     private int nivel = 1;
     private Inventario inventario;
     private Deck decks[] = new Deck[5];
-    private int cardcoinsUsuario = 0;
+    private double cardcoinsUsuario = 0.0;
 
-    public Usuario(String user, String cpf, String senha, int idade, char sexo, String email, int nivel, Inventario inventario, int cardcoins) {
-        this.usuario = user;
+    public Usuario(String usuario, String cpf, String senha, int idade, char sexo, String email, int nivel, Inventario inventario, double cardcoins) {
+        this.usuario = usuario;
         this.cpf = cpf;
         this.senha = senha;
         this.idade = idade;
@@ -94,11 +94,11 @@ public class Usuario {
         this.decks = decks;
     }
 
-    public int getCardcoinsUsuario() {
+    public double getCardcoinsUsuario() {
         return cardcoinsUsuario;
     }
 
-    public void setCardcoinsUsuario(int cardcoinsUsuario) {
+    public void setCardcoinsUsuario(double cardcoinsUsuario) {
         this.cardcoinsUsuario = cardcoinsUsuario;
     }
 
@@ -115,10 +115,19 @@ public class Usuario {
         for (int i = 0; i < decks.length; i++) {
             if (decks[i] != null && decks[i].equals(deckParaRemover)) {
                 decks[i] = null;
-                return true; 
+                return true; // Deck removido com sucesso
             }
         }
-        return false; 
+        return false; // Deck não encontrado
     }
+
+
+
+
+
+
+
+
+
 
 }

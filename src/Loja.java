@@ -3,10 +3,12 @@ import java.util.Random;
 public class Loja {
     private String numeroCartao;
     private String codigoVerificador;
+    private boolean promocao;
 
-    public Loja(String numeroCartao, String codigoVerificador) {
+    public Loja(String numeroCartao, String codigoVerificador, boolean promocao) {
         this.numeroCartao = numeroCartao;
         this.codigoVerificador = codigoVerificador;
+        this.promocao = promocao;
     }
 
     public String getNumeroCartao() {
@@ -20,12 +22,21 @@ public class Loja {
     public String getCodigoVerificador() {
         return codigoVerificador;
     }
+
     public void setCodigoVerificador(String codigoVerificador) {
         this.codigoVerificador = codigoVerificador;
     }
 
+    public boolean isPromocao() {
+        return promocao;
+    }
+
+    public void setPromocao(boolean promocao) {
+        this.promocao = promocao;
+    }
+
     public void compraDeBooster(Usuario usuario, Inventario inventario) {
-        int precoBooster = 10;
+        int precoBooster = promocao ? 15 : 10;
 
         if (usuario.getCardcoinsUsuario() >= precoBooster) {
             usuario.setCardcoinsUsuario(usuario.getCardcoinsUsuario() - precoBooster);
@@ -33,6 +44,12 @@ public class Loja {
             Carta[] boosterPack = gerarCartaAleatoria();
 
             for (Carta cartaAleatoria : boosterPack) {
+                if (promocao) {
+                    double chanceCartaUnica = Math.random();
+                    if (chanceCartaUnica <= 0.01) {
+                        cartaAleatoria = criarCartaUnica(cartaAleatoria);
+                    }
+                }
                 adicionarCartaAoInventario(inventario, cartaAleatoria, usuario);
             }
 
@@ -40,6 +57,34 @@ public class Loja {
         } else {
             System.out.println("VOCÊ NÃO TEM CARDCOINS SUFICIENTES PARA COMPRAR O BOOSTER!");
         }
+    }
+
+    public void BoosterEspecial(Usuario usuario, Inventario inventario) {
+        int precoBoosterEspecial = 15;
+
+        if (usuario.getCardcoinsUsuario() >= precoBoosterEspecial) {
+            usuario.setCardcoinsUsuario(usuario.getCardcoinsUsuario() - precoBoosterEspecial);
+
+            Carta[] boosterPack = gerarCartaAleatoria();
+
+            for (Carta cartaAleatoria : boosterPack) {
+                if (promocao) {
+                    double chanceCartaUnica = Math.random();
+                    if (chanceCartaUnica <= 0.01) {
+                        cartaAleatoria = criarCartaUnica(cartaAleatoria);
+                    }
+                }
+                adicionarCartaAoInventario(inventario, cartaAleatoria, usuario);
+            }
+
+            System.out.println("BOOSTER ESPECIAL COMPRADO COM SUCESSO!!");
+        } else {
+            System.out.println("VOCÊ NÃO TEM CARDCOINS SUFICIENTES PARA COMPRAR O BOOSTER ESPECIAL!");
+        }
+    }
+
+    private Carta criarCartaUnica(Carta cartaAleatoria) {
+        return null;
     }
 
     public Carta[] gerarCartaAleatoria() {
@@ -95,7 +140,7 @@ public class Loja {
     }
 
     private int calcularValorCartasRepetidas(Carta carta) {
-
         return 10;
     }
+
 }
