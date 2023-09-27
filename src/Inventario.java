@@ -5,7 +5,7 @@ public class Inventario {
 
     public Inventario() {
         this.cartas = new Carta[200];
-        this.nivelAtual = 0;
+        this.nivelAtual = 1;
         this.cardcoinsInventario = 0;
     }
 
@@ -57,6 +57,18 @@ public class Inventario {
     }
 
     public int contarCartasIguais(Carta carta) {
-        return 0;
+        if (carta != null) {
+            int contador = 0;
+
+            for (Carta cartaNoInventario : cartas) {
+                if (cartaNoInventario != null && cartaNoInventario.equals(carta)) {
+                    contador++;
+                }
+            }
+
+            return contador;
+        } else {
+            return 0;
+        }
     }
 }

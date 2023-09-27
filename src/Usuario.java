@@ -120,6 +120,7 @@ public class Usuario {
         }
         return false; // Deck não encontrado
     }
+<<<<<<< HEAD
 
 
 
@@ -130,4 +131,6 @@ public class Usuario {
 
 
 
+=======
+>>>>>>> c08247e3631936d5ed57cde7731822d0e7f79bd0
 }

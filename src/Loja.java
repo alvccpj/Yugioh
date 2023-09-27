@@ -53,9 +53,9 @@ public class Loja {
                 adicionarCartaAoInventario(inventario, cartaAleatoria, usuario);
             }
 
-            System.out.println("BOOSTER COMPRADO COM SUCESSO!!");
+            System.out.println("Booster comprado com sucesso!");
         } else {
-            System.out.println("VOCÊ NÃO TEM CARDCOINS SUFICIENTES PARA COMPRAR O BOOSTER!");
+            System.out.println("Você não tem cardcoins o suficiente para comprar o Booster!");
         }
     }
 
@@ -135,7 +135,7 @@ public class Loja {
             int valorCartasRepetidas = calcularValorCartasRepetidas(carta);
             usuario.setCardcoinsUsuario(usuario.getCardcoinsUsuario() + valorCartasRepetidas);
             System.out.println(
-                    "Você já possui o limite de cartas repetidas. Ganhou " + valorCartasRepetidas + " Cardacoins.");
+                    "Você já possui o limite de cartas repetidas. Ganhou " + valorCartasRepetidas + " Cardcoins.");
         }
     }
 

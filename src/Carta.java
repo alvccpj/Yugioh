@@ -23,6 +23,7 @@ public class Carta {
         this.mana = mana;
     }
     public enum Raridade {
+    private enum Raridade {
         COMUM, INCOMUM, RARA, MUITO_RARA, EPICA 
     }
     public String getNomeCarta() {
@@ -112,7 +113,10 @@ public class Carta {
             throw new IllegalArgumentException("A quantidade deve estar entre 0 e 3, exceto para mana.");
         }
     }
+<<<<<<< HEAD
 
     
 
+=======
+>>>>>>> c08247e3631936d5ed57cde7731822d0e7f79bd0
 }
