@@ -83,7 +83,7 @@ public class Loja {
         }
     }
 
-    private Carta criarCartaUnica(Carta cartaAleatoria) {
+    Carta criarCartaUnica(Carta cartaAleatoria) {
         return null;
     }
 
@@ -93,7 +93,7 @@ public class Loja {
         Random random = new Random();
 
         for (int posBoosterPack = 0; posBoosterPack < qtdCardsBoosterPack; posBoosterPack++) {
-            String[] nomesCartas = { "Carta 1", "Carta 2", "Carta 3", "Carta 4", "Carta 5" };
+            String[] nomesCartas = {"Carta 1", "Carta 2", "Carta 3", "Carta 4", "Carta 5"};
             String nomeAleatorio = nomesCartas[random.nextInt(nomesCartas.length)];
             int ataqueAleatorio = random.nextInt(10) + 1;
             int defesaAleatoria = random.nextInt(10) + 1;

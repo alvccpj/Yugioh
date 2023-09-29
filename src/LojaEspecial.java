@@ -13,6 +13,7 @@ public class LojaEspecial extends Loja {
             Carta[] boosterPack = gerarCartaAleatoria();
 
             for (Carta cartaAleatoria : boosterPack) {
+                boolean promocao = false;
                 if (promocao) {
                     double chanceCartaUnica = Math.random();
                     if (chanceCartaUnica <= 0.01) {
