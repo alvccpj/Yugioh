@@ -59,6 +59,7 @@ public class Loja {
         }
     }
 
+
     public void BoosterEspecial(Usuario usuario, Inventario inventario) {
         int precoBoosterEspecial = 15;
 
@@ -77,9 +78,8 @@ public class Loja {
                 adicionarCartaAoInventario(inventario, cartaAleatoria, usuario);
             }
 
-            System.out.println("BOOSTER ESPECIAL COMPRADO COM SUCESSO!!");
-        } else {
-            System.out.println("VOCÊ NÃO TEM CARDCOINS SUFICIENTES PARA COMPRAR O BOOSTER ESPECIAL!");
+            System.out.println("Booster especial comprado com sucesso!");
+            System.out.println("Você não cardcoins suficientes para comprar o booster especial!");
         }
     }
 
