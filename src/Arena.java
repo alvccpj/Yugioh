@@ -161,6 +161,35 @@ public class Arena {
     }
 
     private void ataque(Usuario jogadorAtacante, Usuario jogadorDefensor) {
-       
+        Carta[][] campoAtacante = jogadorAtacante == jogador1 ? campoJogador1 : campoJogador2;
+        Carta[][] campoDefensor = jogadorDefensor == jogador1 ? campoJogador1 : campoJogador2;
+    
+        for (int i = 0; i < campoAtacante[0].length; i++) {
+            Carta cartaAtacante = campoAtacante[0][i];
+            Carta cartaDefensor = campoDefensor[0][i];
+    
+            if (cartaAtacante != null) {
+                if (cartaDefensor == null) {
+                    // Se não houver carta defensora, aplique o dano diretamente ao jogador defensor
+                    jogadorDefensor.setVida(jogadorDefensor.getVida() - cartaAtacante.getDano());
+                } else {
+                    // Caso contrário, calcule o resultado da batalha
+                    int danoAtaque = cartaAtacante.getDano();
+                    int danoDefesa = cartaDefensor.getDefesa();
+    
+                    if (danoAtaque > danoDefesa) {
+                        // Atacante vence a batalha e inflige dano ao defensor
+                        int danoCausado = danoAtaque - danoDefesa;
+                        jogadorDefensor.setVida(jogadorDefensor.getVida() - danoCausado);
+                    } else if (danoDefesa > danoAtaque) {
+                        // Defensor vence a batalha e inflige dano ao atacante
+                        int danoCausado = danoDefesa - danoAtaque;
+                        jogadorAtacante.setVida(jogadorAtacante.getVida() - danoCausado);
+                    }
+                    // Em caso de empate, ninguém sofre dano.
+                }
+            }
+        }
     }
+    
 }

@@ -121,4 +121,12 @@ public class Usuario {
         return false; // Deck não encontrado
     }
 
+    public void setMao(Carta[] cartas) {
+
+    }
+
+    public Carta[] getMao() {
+        return null;
+    }
+
 }
