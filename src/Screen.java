@@ -53,8 +53,7 @@ public class Screen extends JFrame {
     }
 
     private boolean validarCredenciais(String username, String password) {
-        // Adicione sua lógica de validação de credenciais aqui
-        // Por enquanto, estamos apenas simulando uma validação simples
+       
         return username.equals("seu_nome_de_usuario") && password.equals("sua_senha");
     }
 
