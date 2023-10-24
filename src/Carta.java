@@ -1,4 +1,6 @@
-public class Carta implements AtivacaoCarta{
+import interfaces.AtivacaoCarta;
+
+public class Carta implements AtivacaoCarta {
     private String nomeCarta;
     private String imagem;
     private String tipo;

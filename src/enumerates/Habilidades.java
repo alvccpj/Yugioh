@@ -1,3 +1,5 @@
+package enumerates;
+
 public enum Habilidades {
     ATAQUE_FÍSICO,
     MAGIA_DE_FOGO,

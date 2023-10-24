@@ -1,3 +1,5 @@
+import interfaces.AtivacaoCarta;
+
 import java.util.Random;
 
 public class CartaUnique extends Carta implements AtivacaoCarta {

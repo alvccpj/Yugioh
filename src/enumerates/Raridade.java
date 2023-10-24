@@ -1,3 +1,5 @@
+package enumerates;
+
 public enum Raridade {
     COMUM(0.80),
     INCOMUM(0.15),
