@@ -70,4 +70,7 @@ public class Deck {
             inventario.adicionarCartaAoInventario(carta);
         }
     }
+
+    public Carta obterCartaAleatoria() {
+    }
 }

@@ -80,7 +80,8 @@ public class Arena {
 
                 if (carta != null) {
                     cartasAleatorias.add(carta);
-                    deck.removeCarta(carta);
+                    Inventario inventario;
+                    deck.removerCartaDoDeck(carta, inventario);
                     cartasRestantes--;
                 }
             }

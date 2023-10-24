@@ -1,4 +1,4 @@
-public class Carta {
+public class Carta implements AtivacaoCarta{
     private String nomeCarta;
     private String imagem;
     private String tipo;
@@ -109,6 +109,16 @@ public class Carta {
             this.quantidade = quantidade;
         } else {
             throw new IllegalArgumentException("A quantidade deve estar entre 0 e 3, exceto para mana.");
+        }
+    }
+
+    @Override
+    public void ativacao() {
+        if (habilidade != null) {
+            System.out.println("Ativação da habilidade da carta: " + habilidade);
+            // Lógica de ativação da habilidade
+        } else {
+            System.out.println("Carta sem habilidades.");
         }
     }
 }
