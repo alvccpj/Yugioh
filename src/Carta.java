@@ -26,6 +26,10 @@ public class Carta implements AtivacaoCarta {
     }
 
 
+    public Carta() {
+    }
+
+
     public String getNomeCarta() {
         return nomeCarta;
     }

@@ -25,12 +25,12 @@ public class Inventario {
         this.nivelAtual = nivelAtual;
     }
 
-    public int getCardcoinsUsuario() {
+    public int getCardcoinsInventario() {
         return cardcoinsInventario;
     }
 
-    public void setCardcoinsUsuario(int cardcoinsUsuario) {
-        this.cardcoinsInventario = cardcoinsUsuario;
+    public void setCardcoinsInventario(int cardcoinsInventario) {
+        this.cardcoinsInventario = cardcoinsInventario;
     }
 
     public boolean removerCartaDoInventario(Carta carta) {
@@ -55,6 +55,11 @@ public class Inventario {
             }
         }
     }
+    public void adicionarCartaAoCemiterio(Carta carta) {
+        
+        // ainda nao tem instrução do cemiterio
+    }
+    
 
     public int contarCartasIguais(Carta carta) {
         if (carta != null) {

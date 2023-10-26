@@ -1,196 +1,176 @@
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Arena {
     private Usuario jogador1;
     private Usuario jogador2;
-    private Carta[][] campoJogador1 = new Carta[2][5];
-    private Carta[][] campoJogador2 = new Carta[2][5];
-    private int vidaJogador1 = 20;
-    private int vidaJogador2 = 20;
-    private boolean jogoEncerrado = false;
-    private Carta[] maoJogador1 = new Carta[10];
-    private Carta[] maoJogador2 = new Carta[10];
-    private int manaMaximaJogador1 = 0;
-    private int manaMaximaJogador2 = 0;
-    private ArrayList<Carta> cemiterioJogador1 = new ArrayList<>();
-    private ArrayList<Carta> cemiterioJogador2 = new ArrayList<>();
+    private Deck deckJogador1;
+    private Deck deckJogador2;
+    private Carta[][] campoJogador1;
+    private Carta[][] campoJogador2;
+    private int pontosVidaJogador1;
+    private int pontosVidaJogador2;
+    private Carta[] maoJogador1;
+    private Carta[] maoJogador2;
+    private int manaMaximaJogador1;
+    private int manaMaximaJogador2;
+    private Carta[] cemiterioJogador1 = new Carta[100];
+    private Carta[] cemiterioJogador2 = new Carta[100];
+    private boolean turnoJogador1;
 
     public Arena(Usuario jogador1, Usuario jogador2) {
         this.jogador1 = jogador1;
         this.jogador2 = jogador2;
-        jogador1.setMao(new Carta[10]);
-        jogador2.setMao(new Carta[10]);
+        this.deckJogador1 = null;
+        this.deckJogador2 = null;
+        this.campoJogador1 = new Carta[2][5];
+        this.campoJogador2 = new Carta[2][5];
+        this.pontosVidaJogador1 = 20;
+        this.pontosVidaJogador2 = 20;
+        this.maoJogador1 = new Carta[10];
+        this.maoJogador2 = new Carta[10];
+        this.manaMaximaJogador1 = 0;
+        this.manaMaximaJogador2 = 0;
+        this.turnoJogador1 = false;
     }
 
-    public void iniciarJogo() {
-        System.out.println("Iniciando partida entre " + jogador1.getUsuario() + " e " + jogador2.getUsuario());
-        while (!jogoEncerrado) {
-            regraJogo();
+    public void iniciar() {
+        sortearPrimeiroJogador();
+        while (pontosVidaJogador1 > 0 && pontosVidaJogador2 > 0) {
+            turno();
+            trocarTurno();
         }
+        declararVencedor();
     }
 
-    private void regraJogo() {
-        fazerTurno(jogador1);
-        fazerTurno(jogador2);
-
-        if (vidaJogador1 <= 0 || vidaJogador2 <= 0) {
-            jogoEncerrado = true;
-            finalizarJogo();
-        }
-    }
-
-    private void fazerTurno(Usuario jogador) {
-        saque(jogador);
-
-        posicionar(jogador);
-
-        ataque(jogador, jogador == jogador1 ? jogador2 : jogador1);
-
-        if (jogador == jogador1) {
-            jogador = jogador2;
-        } else {
-            jogador = jogador1;
-        }
-    }
-
-    private void finalizarJogo() {
-        if (vidaJogador1 <= 0) {
-            System.out.println(jogador2.getUsuario() + " venceu!");
-        } else if (vidaJogador2 <= 0) {
-            System.out.println(jogador1.getUsuario() + " venceu!");
-        } else {
-            System.out.println("O jogo terminou em empate!");
-        }
-    }
-
-    private void saque(Usuario jogador) {
+    private void sortearPrimeiroJogador() {
         Random random = new Random();
-        Deck[] decks = jogador.getDecks();
-        ArrayList<Carta> cartasAleatorias = new ArrayList<>();
-
-        int cartasRestantes = 7;
-
-        for (int i = 0; i < decks.length && cartasRestantes > 0; i++) {
-            int indiceDeck = random.nextInt(decks.length);
-            Deck deck = decks[indiceDeck];
-
-            if (deck != null) {
-                Carta carta = deck.obterCartaAleatoria();
-
-                if (carta != null) {
-                    cartasAleatorias.add(carta);
-                    Inventario inventario;
-                    deck.removerCartaDoDeck(carta, inventario);
-                    cartasRestantes--;
-                }
-            }
-        }
-
-        jogador.setDecks(decks);
-        jogador.setMao(cartasAleatorias.toArray(new Carta[0]));
+        turnoJogador1 = random.nextBoolean();
     }
 
-    private void posicionar(Usuario jogador) {
+    private void turno() {
+        if (turnoJogador1) {
+            realizarTurno(jogador1, jogador2, maoJogador1);
+        } else {
+            realizarTurno(jogador2, jogador1, maoJogador2);
+        }
+    }
+    private void posicionamento(Usuario jogador, Carta[][] campo) {
         if (jogador == jogador1) {
-            if (jogador.getMao().length > 0) {
-                Carta[] mao = jogador.getMao();
-
-                if (manaMaximaJogador1 > 0) {
-                    for (int i = 0; i < mao.length; i++) {
-                        if (mao[i] instanceof Mana) {
-                            for (int j = 0; j < campoJogador1[1].length; j++) {
-                                if (campoJogador1[1][j] == null) {
-                                    campoJogador1[1][j] = mao[i];
-                                    mao[i] = null;
-                                    manaMaximaJogador1--;
-                                    break;
-                                }
-                            }
+            if (jogador.getMana() > 0) {
+                campo[0][0] = new Mana("Mana Genérica", "imagem", "Comum", 1, 1);
+                jogador.setManaAtual(jogador.getMana() - 1); // Reduza a mana do jogador
+            } else {
+                for (Carta carta : jogador.getMao()) {
+                    if (carta != null) {
+                        if (carta instanceof Mana) {
+                            continue; 
                         }
+    
+                        campo[1][0] = carta;
+                        jogador.removerCartaDaMao(carta);
+                        jogador.setManaMaxima(jogador.getManaMaxima() - carta.getMana());
+                        break;
                     }
                 }
-
-                for (int i = 0; i < mao.length; i++) {
-                    if (mao[i] != null) {
-                        for (int j = 0; j < campoJogador1[1].length; j++) {
-                            if (campoJogador1[1][j] == null) {
-                                campoJogador1[1][j] = mao[i];
-                                mao[i] = null;
-                                break;
-                            }
-                        }
-                    }
-                }
-
-                jogador.setMao(mao);
             }
         } else if (jogador == jogador2) {
-            if (jogador.getMao().length > 0) {
-                Carta[] mao = jogador.getMao();
+            
+        }
+    }
+    
+    
+    
+    
+    private void realizarTurno(Usuario jogadorAtacante, Usuario jogadorDefensor, Carta[] mao) {
+        saque(jogadorAtacante, mao);
+        compra(jogadorAtacante);
+        posicionamento(jogadorAtacante, campoJogador1); // Adicione esta linha
+    }
+    
+    private void compra(Usuario jogador) {
+        if (jogador == jogador1 && deckJogador1 != null && deckJogador1.getTamanho() > 0) {
+            jogador.setManaMaxima(jogador.getManaMaxima() + 1);
+        } else if (jogador == jogador2 && deckJogador2 != null && deckJogador2.getTamanho() > 0) {
+        }
+    }
+    
 
-                if (manaMaximaJogador2 > 0) {
-                    for (int i = 0; i < mao.length; i++) {
-                        if (mao[i] instanceof Mana) {
-                            for (int j = 0; j < campoJogador2[1].length; j++) {
-                                if (campoJogador2[1][j] == null) {
-                                    campoJogador2[1][j] = mao[i];
-                                    mao[i] = null;
-                                    manaMaximaJogador2--;
-                                    break;
-                                }
-                            }
-                        }
+    private void saque(Usuario jogador, Carta[] mao) {
+        int maxCartasSaque = 7;
+
+        if (jogador == jogador1) {
+
+            if (deckJogador1 != null) {
+                Carta[] cartasSaque = new Carta[maxCartasSaque];
+
+                for (int i = 0; i < maxCartasSaque; i++) {
+                    if (deckJogador1.getTamanho() > 0) {
+                        cartasSaque[i] = deckJogador1.obterCartaAleatoria();
                     }
                 }
 
-                for (int i = 0; i < mao.length; i++) {
-                    if (mao[i] != null) {
-                        for (int j = 0; j < campoJogador2[1].length; j++) {
-                            if (campoJogador2[1][j] == null) {
-                                campoJogador2[1][j] = mao[i];
-                                mao[i] = null;
-                                break;
-                            }
-                        }
+                for (int i = 0; i < maxCartasSaque; i++) {
+                    if (cartasSaque[i] != null) {
+                        mao[i] = cartasSaque[i];
                     }
                 }
 
-                jogador.setMao(mao);
+                int cartasDevolvidas = jogador.devolverCartasAoDeck(cartasSaque, maxCartasSaque);
+
+                if (cartasDevolvidas > 0) {
+                    for (int i = 0; i < cartasDevolvidas; i++) {
+                        if (deckJogador1 != null) {
+                            int posicaoMao = i + maxCartasSaque;
+                            mao[posicaoMao] = deckJogador1.obterCartaAleatoria();
+                        }
+                    }
+                }
+            }
+        } else if (jogador == jogador2) {
+
+            if (deckJogador2 != null) {
+                Carta[] cartasSaque = new Carta[maxCartasSaque];
+
+                for (int i = 0; i < maxCartasSaque; i++) {
+                    if (deckJogador2.getTamanho() > 0) {
+                        cartasSaque[i] = deckJogador2.obterCartaAleatoria();
+                    }
+                }
+
+                for (int i = 0; i < maxCartasSaque; i++) {
+                    if (cartasSaque[i] != null) {
+                        mao[i] = cartasSaque[i];
+                    }
+                }
+
+                int cartasDevolvidas = jogador.devolverCartasAoDeck(cartasSaque, maxCartasSaque);
+
+                if (cartasDevolvidas > 0) {
+                    for (int i = 0; i < cartasDevolvidas; i++) {
+                        if (deckJogador2 != null) {
+                            int posicaoMao = i + maxCartasSaque;
+                            mao[posicaoMao] = deckJogador2.obterCartaAleatoria();
+                        }
+                    }
+                }
             }
         }
     }
 
-    private void ataque(Usuario jogadorAtacante, Usuario jogadorDefensor) {
-        Carta[][] campoAtacante = jogadorAtacante == jogador1 ? campoJogador1 : campoJogador2;
-        Carta[][] campoDefensor = jogadorDefensor == jogador1 ? campoJogador1 : campoJogador2;
-    
-        for (int i = 0; i < campoAtacante[0].length; i++) {
-            Carta cartaAtacante = campoAtacante[0][i];
-            Carta cartaDefensor = campoDefensor[0][i];
-    
-            if (cartaAtacante != null) {
-                if (cartaDefensor == null) {
-                    // Se não houver carta defensora, aplique o dano diretamente ao jogador defensor
-                    jogadorDefensor.setVida(jogadorDefensor.getVida() - cartaAtacante.getDano());
-                } else {
-                    // Caso contrário, calcule o resultado da batalha
-                    int danoAtaque = cartaAtacante.getDano();
-                    int danoDefesa = cartaDefensor.getDefesa();
-    
-                    if (danoAtaque > danoDefesa) {
-                        // Atacante vence a batalha e inflige dano ao defensor
-                        int danoCausado = danoAtaque - danoDefesa;
-                        jogadorDefensor.setVida(jogadorDefensor.getVida() - danoCausado);
-                    } else if (danoDefesa > danoAtaque) {
-                        // Defensor vence a batalha e inflige dano ao atacante
-                        int danoCausado = danoDefesa - danoAtaque;
-                        jogadorAtacante.setVida(jogadorAtacante.getVida() - danoCausado);
-                    }
-                    // Em caso de empate, ninguém sofre dano.
-                }
-            }
-        }
+    private void trocarTurno() {
+        turnoJogador1 = !turnoJogador1;
     }
-    
+
+    private void declararVencedor() {
+        if (pontosVidaJogador1 <= 0) {
+
+            jogador2.adicionarCardCoins(100);
+            jogador1.adicionarCardCoins(10);
+        } else if (pontosVidaJogador2 <= 0) {
+
+            jogador1.adicionarCardCoins(100);
+            jogador2.adicionarCardCoins(10);
+        }
+
+    }
 }

@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Deck {
     private String nomeDeck;
     private Carta[] cartas;
@@ -72,5 +74,26 @@ public class Deck {
     }
 
     public Carta obterCartaAleatoria() {
+    if (cartas.length == 0) {
+        return null;
     }
+
+    Random random = new Random();
+    int indice = random.nextInt(cartas.length);
+
+    Carta carta = cartas[indice];
+    cartas[indice] = null; 
+
+    return carta;
+}
+public int getTamanho() {
+    int tamanho = 0;
+    for (Carta carta : cartas) {
+        if (carta != null) {
+            tamanho++;
+        }
+    }
+    return tamanho;
+}
+
 }

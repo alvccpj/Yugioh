@@ -9,6 +9,9 @@ public class Usuario {
     private Inventario inventario;
     private Deck decks[] = new Deck[5];
     private double cardcoinsUsuario = 0.0;
+    private int manaMaxima;
+    private int manaAtual;
+    private Carta[] mao = new Carta[10]; 
 
     public Usuario(String usuario, String cpf, String senha, int idade, char sexo, String email, int nivel, Inventario inventario, double cardcoins) {
         this.usuario = usuario;
@@ -20,6 +23,26 @@ public class Usuario {
         this.nivel = nivel;
         this.inventario = new Inventario();
         this.cardcoinsUsuario = cardcoins;
+        this.manaMaxima = 0;
+        this.manaAtual = 0;
+    }
+    public int getMana() {
+        return manaMaxima;
+    }
+    
+    public int getManaAtual() {
+        return manaAtual;
+    }
+
+    public void setManaAtual(int manaAtual) {
+        this.manaAtual = manaAtual;
+    }
+    public int getManaMaxima() {  
+        return manaMaxima;
+    }
+
+    public void setManaMaxima(int manaMaxima) {  
+        this.manaMaxima = manaMaxima;
     }
 
     public String getUsuario() {
@@ -89,6 +112,8 @@ public class Usuario {
     public Deck[] getDecks() {
         return decks;
     }
+   
+
 
     public void setDecks(Deck[] decks) {
         this.decks = decks;
@@ -115,18 +140,71 @@ public class Usuario {
         for (int i = 0; i < decks.length; i++) {
             if (decks[i] != null && decks[i].equals(deckParaRemover)) {
                 decks[i] = null;
-                return true; // Deck removido com sucesso
+                return true;
             }
         }
-        return false; // Deck não encontrado
+        return false; 
     }
 
-    public void setMao(Carta[] cartas) {
+    public void adicionarCardCoins(double valor) {
+        this.cardcoinsUsuario += valor;
+    }
 
+    public void adicionarAoCemiterio(Carta carta) {
+      
+        this.inventario.adicionarCartaAoCemiterio(carta);
+    }
+
+    public int getVida() {
+        
+        return 0; 
     }
 
     public Carta[] getMao() {
-        return null;
+        
+        return null; 
+    }
+    public void adicionarManaMaxima(int quantidade) {
+        this.manaMaxima += quantidade;
+    }
+
+    public void adicionarManaAtual(int quantidade) {
+        this.manaAtual += quantidade;
+    }
+
+    public void removerCartaDaMao(Carta carta) {
+        for (int i = 0; i < mao.length; i++) {
+            if (mao[i] == carta) {
+                mao[i] = null;
+                break;
+            }
+        }
+    }
+    
+    public int devolverCartasAoDeck(Carta[] cartasDevolvidas, int quantidade) {
+        if (cartasDevolvidas != null && quantidade > 0) {
+            int cartasDevolvidasCount = 0;
+    
+            for (int i = 0; i < quantidade; i++) {
+                if (cartasDevolvidas[i] != null) {
+                   
+                    if (inventario.getCartas().length < 200) {
+                        inventario.adicionarCartaAoInventario(cartasDevolvidas[i]);
+                        cartasDevolvidas[i] = null;
+                        cartasDevolvidasCount++;
+                    } else {
+                        break;
+                    }
+                }
+            }
+    
+            return cartasDevolvidasCount;
+        }
+    
+        return 0;
     }
 
 }
+    
+
+
