@@ -54,18 +54,19 @@ public class Arena {
             realizarTurno(jogador2, jogador1, maoJogador2);
         }
     }
+
     private void posicionamento(Usuario jogador, Carta[][] campo) {
         if (jogador == jogador1) {
-            if (jogador.getMana() > 0) {
+            if (jogador.getManaAtual() > 0) {
                 campo[0][0] = new Mana("Mana Genérica", "imagem", "Comum", 1, 1);
-                jogador.setManaAtual(jogador.getMana() - 1); // Reduza a mana do jogador
+                jogador.setManaAtual(jogador.getManaAtual() - 1); // Reduza a mana do jogador
             } else {
                 for (Carta carta : jogador.getMao()) {
                     if (carta != null) {
                         if (carta instanceof Mana) {
-                            continue; 
+                            continue;
                         }
-    
+
                         campo[1][0] = carta;
                         jogador.removerCartaDaMao(carta);
                         jogador.setManaMaxima(jogador.getManaMaxima() - carta.getMana());
@@ -74,26 +75,24 @@ public class Arena {
                 }
             }
         } else if (jogador == jogador2) {
-            
+
         }
     }
-    
-    
-    
-    
+
+
     private void realizarTurno(Usuario jogadorAtacante, Usuario jogadorDefensor, Carta[] mao) {
         saque(jogadorAtacante, mao);
         compra(jogadorAtacante);
         posicionamento(jogadorAtacante, campoJogador1); // Adicione esta linha
     }
-    
+
     private void compra(Usuario jogador) {
         if (jogador == jogador1 && deckJogador1 != null && deckJogador1.getTamanho() > 0) {
             jogador.setManaMaxima(jogador.getManaMaxima() + 1);
         } else if (jogador == jogador2 && deckJogador2 != null && deckJogador2.getTamanho() > 0) {
         }
     }
-    
+
 
     private void saque(Usuario jogador, Carta[] mao) {
         int maxCartasSaque = 7;

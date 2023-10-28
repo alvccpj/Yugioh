@@ -10,9 +10,9 @@ public class Carta implements AtivacaoCarta {
     private int custo;
     private String habilidade;
     private int quantidade;
-    private int mana;
+    private int manaDaCarta;
 
-    public Carta(String nome, String imagem, String tipo, String raridade, int ataque, int defesa, int custo, String habilidade, int quantidade, int mana) {
+    public Carta(String nome, String imagem, String tipo, String raridade, int ataque, int defesa, int custo, String habilidade, int quantidade, int manaDaCarta) {
         this.nomeCarta = nome;
         this.imagem = imagem;
         this.tipo = tipo;
@@ -22,13 +22,8 @@ public class Carta implements AtivacaoCarta {
         this.custo = custo;
         this.habilidade = habilidade;
         this.quantidade = quantidade;
-        this.mana = mana;
+        this.manaDaCarta = manaDaCarta;
     }
-
-
-    public Carta() {
-    }
-
 
     public String getNomeCarta() {
         return nomeCarta;
@@ -99,11 +94,11 @@ public class Carta implements AtivacaoCarta {
     }
 
     public int getMana() {
-        return mana;
+        return manaDaCarta;
     }
 
     public void setMana(int mana) {
-        this.mana = mana;
+        this.manaDaCarta = mana;
     }
 
     public int getQuantidade() {
@@ -111,7 +106,7 @@ public class Carta implements AtivacaoCarta {
     }
 
     public void setQuantidade(int quantidade) {
-        if (quantidade >= 0 && (quantidade <= 3 || this.mana != 0)) {
+        if (quantidade >= 0 && (quantidade <= 3 || this.manaDaCarta != 0)) {
             this.quantidade = quantidade;
         } else {
             throw new IllegalArgumentException("A quantidade deve estar entre 0 e 3, exceto para mana.");
@@ -122,7 +117,6 @@ public class Carta implements AtivacaoCarta {
     public void ativacao() {
         if (habilidade != null) {
             System.out.println("Ativação da habilidade da carta: " + habilidade);
-            // Lógica de ativação da habilidade
         } else {
             System.out.println("Carta sem habilidades.");
         }

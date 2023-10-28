@@ -5,44 +5,28 @@ public class Usuario {
     private int idade;
     private char sexo;
     private String email;
-    private int nivel = 1;
+    private int nivel;
     private Inventario inventario;
-    private Deck decks[] = new Deck[5];
-    private double cardcoinsUsuario = 0.0;
+    private Deck[] decks;
+    private double cardcoinsUsuario;
     private int manaMaxima;
     private int manaAtual;
-    private Carta[] mao = new Carta[10]; 
+    private Carta[] mao;
 
-    public Usuario(String usuario, String cpf, String senha, int idade, char sexo, String email, int nivel, Inventario inventario, double cardcoins) {
+    public Usuario(String usuario, String cpf, String senha, int idade, char sexo, String email, int nivel, Inventario inventario, double cardcoinsUsuario, Deck decks, int manaMaxima, int manaAtual, Carta[] mao) {
         this.usuario = usuario;
         this.cpf = cpf;
         this.senha = senha;
         this.idade = idade;
         this.sexo = sexo;
         this.email = email;
-        this.nivel = nivel;
+        this.nivel = 1;
         this.inventario = new Inventario();
-        this.cardcoinsUsuario = cardcoins;
+        this.cardcoinsUsuario = 0.0;
+        this.decks = new Deck[5];
         this.manaMaxima = 0;
         this.manaAtual = 0;
-    }
-    public int getMana() {
-        return manaMaxima;
-    }
-    
-    public int getManaAtual() {
-        return manaAtual;
-    }
-
-    public void setManaAtual(int manaAtual) {
-        this.manaAtual = manaAtual;
-    }
-    public int getManaMaxima() {  
-        return manaMaxima;
-    }
-
-    public void setManaMaxima(int manaMaxima) {  
-        this.manaMaxima = manaMaxima;
+        this.mao = new Carta[10];
     }
 
     public String getUsuario() {
@@ -112,8 +96,6 @@ public class Usuario {
     public Deck[] getDecks() {
         return decks;
     }
-   
-
 
     public void setDecks(Deck[] decks) {
         this.decks = decks;
@@ -125,6 +107,30 @@ public class Usuario {
 
     public void setCardcoinsUsuario(double cardcoinsUsuario) {
         this.cardcoinsUsuario = cardcoinsUsuario;
+    }
+
+    public int getManaAtual() {
+        return manaAtual;
+    }
+
+    public void setManaAtual(int manaAtual) {
+        this.manaAtual = manaAtual;
+    }
+
+    public int getManaMaxima() {
+        return manaMaxima;
+    }
+
+    public void setManaMaxima(int manaMaxima) {
+        this.manaMaxima = manaMaxima;
+    }
+
+    public Carta[] getMao() {
+        return null;
+    }
+
+    public void setMao(Carta[] mao) {
+        this.mao = mao;
     }
 
     public void adicionarDeck(Deck novoDeck) {
@@ -143,7 +149,7 @@ public class Usuario {
                 return true;
             }
         }
-        return false; 
+        return false;
     }
 
     public void adicionarCardCoins(double valor) {
@@ -151,19 +157,9 @@ public class Usuario {
     }
 
     public void adicionarAoCemiterio(Carta carta) {
-      
         this.inventario.adicionarCartaAoCemiterio(carta);
     }
 
-    public int getVida() {
-        
-        return 0; 
-    }
-
-    public Carta[] getMao() {
-        
-        return null; 
-    }
     public void adicionarManaMaxima(int quantidade) {
         this.manaMaxima += quantidade;
     }
@@ -180,15 +176,15 @@ public class Usuario {
             }
         }
     }
-    
+
     public int devolverCartasAoDeck(Carta[] cartasDevolvidas, int quantidade) {
         if (cartasDevolvidas != null && quantidade > 0) {
             int cartasDevolvidasCount = 0;
-    
+
             for (int i = 0; i < quantidade; i++) {
                 if (cartasDevolvidas[i] != null) {
-                   
-                    if (inventario.getCartas().length < 200) {
+
+                    if (inventario.getCartasInventario().length < 200) {
                         inventario.adicionarCartaAoInventario(cartasDevolvidas[i]);
                         cartasDevolvidas[i] = null;
                         cartasDevolvidasCount++;
@@ -197,10 +193,10 @@ public class Usuario {
                     }
                 }
             }
-    
+
             return cartasDevolvidasCount;
         }
-    
+
         return 0;
     }
 

@@ -1,20 +1,24 @@
 public class Inventario {
-    private Carta cartas[] = new Carta[200];
+    private Carta[] cartasInventario;
     private int nivelAtual;
     private int cardcoinsInventario;
 
-    public Inventario() {
-        this.cartas = new Carta[200];
+    public Inventario(Carta[] cartasInventario, int nivelAtual, int cardcoinsInventario) {
+        this.cartasInventario = new Carta[200];
         this.nivelAtual = 1;
-        this.cardcoinsInventario = 0;
+        this.cardcoinsInventario = cardcoinsInventario;
     }
 
-    public Carta[] getCartas() {
-        return cartas;
+    public Inventario() {
+
     }
 
-    public void setCartas(Carta[] cartas) {
-        this.cartas = cartas;
+    public Carta[] getCartasInventario() {
+        return cartasInventario;
+    }
+
+    public void setCartasInventario(Carta[] cartasInventario) {
+        this.cartasInventario = cartasInventario;
     }
 
     public int getNivelAtual() {
@@ -35,9 +39,9 @@ public class Inventario {
 
     public boolean removerCartaDoInventario(Carta carta) {
         if (carta != null) {
-            for (int i = 0; i < cartas.length; i++) {
-                if (cartas[i] != null && cartas[i].equals(carta)) {
-                    cartas[i] = null;
+            for (int i = 0; i < cartasInventario.length; i++) {
+                if (cartasInventario[i] != null && cartasInventario[i].equals(carta)) {
+                    cartasInventario[i] = null;
                     return true;
                 }
             }
@@ -47,25 +51,26 @@ public class Inventario {
 
     public void adicionarCartaAoInventario(Carta carta) {
         if (carta != null) {
-            for (int i = 0; i < cartas.length; i++) {
-                if (cartas[i] == null) {
-                    cartas[i] = carta;
+            for (int i = 0; i < cartasInventario.length; i++) {
+                if (cartasInventario[i] == null) {
+                    cartasInventario[i] = carta;
                     break;
                 }
             }
         }
     }
+
     public void adicionarCartaAoCemiterio(Carta carta) {
-        
+
         // ainda nao tem instrução do cemiterio
     }
-    
+
 
     public int contarCartasIguais(Carta carta) {
         if (carta != null) {
             int contador = 0;
 
-            for (Carta cartaNoInventario : cartas) {
+            for (Carta cartaNoInventario : cartasInventario) {
                 if (cartaNoInventario != null && cartaNoInventario.equals(carta)) {
                     contador++;
                 }
