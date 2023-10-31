@@ -14,12 +14,16 @@ public class UsuarioDAO {
         PreparedStatement ps = null;
 
         try {
-            
-            ps = Conexao.getConexao().prepareStatement(sql); // ajeitar
+            ps = Conexao.getConexao().prepareStatement(sql); 
             ps.setString(1, Usuario.getNome());
-            ps.setString(2, Usuario.getLogin());
+            ps.setString(2, Usuario.getCpf());
             ps.setString(3, Usuario.getSenha());
-            ps.setString(4, Usuario.getEmail());
+            ps.setString(4, Usuario.getIdade());
+            ps.setString(5, Usuario.getSexo());
+            ps.setString(6, Usuario.getEmail());
+            ps.setString(7, Usuario.getNivel());
+            ps.setString(8, Usuario.getCardcoinsUsuario());
+
 
             ps.execute();
             ps.close();
