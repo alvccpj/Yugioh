@@ -1,3 +1,5 @@
+package app;
+
 public class LojaEspecial extends Loja {
     public LojaEspecial(String numeroCartao, String codigoVerificador, boolean promocao) {
         super(numeroCartao, codigoVerificador, promocao);

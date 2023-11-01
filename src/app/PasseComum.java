@@ -1,3 +1,4 @@
+package app;
 public class PasseComum extends Progresso {
     private int niveisGanhos;
 

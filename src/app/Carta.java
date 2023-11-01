@@ -1,3 +1,4 @@
+package app;
 import interfaces.AtivacaoCarta;
 
 public class Carta implements AtivacaoCarta {

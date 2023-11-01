@@ -1,3 +1,4 @@
+package app;
 public abstract class Progresso {
     protected String[] premiacoes = new String[60];
     protected int premiacaoAtual;

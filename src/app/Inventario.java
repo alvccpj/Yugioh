@@ -1,3 +1,4 @@
+package app;
 public class Inventario {
     private Carta[] cartasInventario;
     private int nivelAtual;

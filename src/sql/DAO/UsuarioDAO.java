@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import sql.conexao.Conexao;
-//import usuario.usuario 
+import app.Usuario;
 
 public class UsuarioDAO {
     public void cadastrarUsuario(Usuario Usuario){
@@ -18,11 +18,11 @@ public class UsuarioDAO {
             ps.setString(1, Usuario.getUsuario());
             ps.setString(2, Usuario.getCpf());
             ps.setString(3, Usuario.getSenha());
-            ps.setString(4, Usuario.getIdade());
-            ps.setString(5, Usuario.getSexo());
+            ps.setInt(4, Usuario.getIdade());
+            ps.setString(5, Usuario.getSexo()); //ajeitar o set
             ps.setString(6, Usuario.getEmail());
-            ps.setString(7, Usuario.getNivel());
-            ps.setString(8, Usuario.getCardcoinsUsuario());
+            ps.setInt(7, Usuario.getNivel());
+            ps.setDouble(8, Usuario.getCardcoinsUsuario());
 
 
             ps.execute();

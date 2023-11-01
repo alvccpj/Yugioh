@@ -1,3 +1,4 @@
+package app;
 public class PassePremium extends Progresso {
     private int niveisGanhos;
 
