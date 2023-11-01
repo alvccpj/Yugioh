@@ -4,18 +4,18 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import sql.conexao.Conexao;
-import Usuario; //importar classe de usuario
+//import usuario.usuario 
 
 public class UsuarioDAO {
     public void cadastrarUsuario(Usuario Usuario){
 
-        String sql = "INSERT INTO USUARIO (NOME, LOGIN, SENHA, EMAIL) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO USUARIO (NOME, CPF, SENHA, IDADE, SEXO, EMAIL, NIVEL, CARDCOINS ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement ps = null;
 
         try {
             ps = Conexao.getConexao().prepareStatement(sql); 
-            ps.setString(1, Usuario.getNome());
+            ps.setString(1, Usuario.getUsuario());
             ps.setString(2, Usuario.getCpf());
             ps.setString(3, Usuario.getSenha());
             ps.setString(4, Usuario.getIdade());
