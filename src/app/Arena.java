@@ -33,34 +33,49 @@ public class Arena {
         this.manaMaximaJogador2 = 0;
         this.turnoJogador1 = false;
     }
+    public Usuario getJogador1() {
+        return jogador1;
+    }
+
+    public Usuario getJogador2() {
+        return jogador2;
+    }
 
     public void iniciar() {
         sortearPrimeiroJogador();
-        while (pontosVidaJogador1 > 0 && pontosVidaJogador2 > 0) {
-            turno();
+        while (getPontosVidaJogador1() > 0 && getPontosVidaJogador2() > 0) {
+            turno(jogador1, cemiterioJogador1);
             trocarTurno();
         }
         declararVencedor();
     }
 
-    private void sortearPrimeiroJogador() {
+    public int getPontosVidaJogador1() {
+        return pontosVidaJogador1;
+    }
+
+    public int getPontosVidaJogador2() {
+        return pontosVidaJogador2;
+    }
+    public void sortearPrimeiroJogador() {
         Random random = new Random();
         turnoJogador1 = random.nextBoolean();
     }
-
-    private void turno() {
-        if (turnoJogador1) {
-            realizarTurno(jogador1, jogador2, maoJogador1);
-        } else {
-            realizarTurno(jogador2, jogador1, maoJogador2);
-        }
+    public Carta[][] getCampoJogador1() {
+        return campoJogador1;
     }
 
-    private void posicionamento(Usuario jogador, Carta[][] campo) {
+    public void turno(Usuario jogador, Carta[] mao) {
+        saque(jogador, mao);
+        compra(jogador);
+        posicionamento(jogador, campoJogador1);
+    }
+
+    public void posicionamento(Usuario jogador, Carta[][] campo) {
         if (jogador == jogador1) {
             if (jogador.getManaAtual() > 0) {
                 campo[0][0] = new Mana("Mana Genérica", "imagem", "Comum", 1, 1);
-                jogador.setManaAtual(jogador.getManaAtual() - 1); // Reduza a mana do jogador
+                jogador.setManaAtual(jogador.getManaAtual() - 1); 
             } else {
                 for (Carta carta : jogador.getMao()) {
                     if (carta != null) {
@@ -80,22 +95,24 @@ public class Arena {
         }
     }
 
-
+    public void realizarTurnoPublic(Usuario jogadorAtacante, Usuario jogadorDefensor, Carta[] mao) {
+        realizarTurno(jogadorAtacante, jogadorDefensor, mao);
+    }
     private void realizarTurno(Usuario jogadorAtacante, Usuario jogadorDefensor, Carta[] mao) {
         saque(jogadorAtacante, mao);
         compra(jogadorAtacante);
-        posicionamento(jogadorAtacante, campoJogador1); // Adicione esta linha
+        posicionamento(jogadorAtacante, campoJogador1);
     }
 
-    private void compra(Usuario jogador) {
+    public void compra(Usuario jogador) {
         if (jogador == jogador1 && deckJogador1 != null && deckJogador1.getTamanho() > 0) {
             jogador.setManaMaxima(jogador.getManaMaxima() + 1);
         } else if (jogador == jogador2 && deckJogador2 != null && deckJogador2.getTamanho() > 0) {
+            jogador.setManaMaxima(jogador.getManaMaxima() + 1);
         }
     }
 
-
-    private void saque(Usuario jogador, Carta[] mao) {
+    public void saque(Usuario jogador, Carta[] mao) {
         int maxCartasSaque = 7;
 
         if (jogador == jogador1) {
@@ -157,20 +174,20 @@ public class Arena {
         }
     }
 
-    private void trocarTurno() {
+    public void trocarTurno() {
         turnoJogador1 = !turnoJogador1;
     }
 
     private void declararVencedor() {
-        if (pontosVidaJogador1 <= 0) {
-
-            jogador2.adicionarCardCoins(100);
-            jogador1.adicionarCardCoins(10);
-        } else if (pontosVidaJogador2 <= 0) {
-
-            jogador1.adicionarCardCoins(100);
-            jogador2.adicionarCardCoins(10);
+        if (getPontosVidaJogador1() <= 0) {
+            getJogador2().adicionarCardCoins(100);
+            getJogador1().adicionarCardCoins(10);
+        } else if (getPontosVidaJogador2() <= 0) {
+            getJogador1().adicionarCardCoins(100);
+            getJogador2().adicionarCardCoins(10);
         }
-
     }
 }
+
+
+
