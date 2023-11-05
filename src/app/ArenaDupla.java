@@ -1,4 +1,5 @@
 package app;
+
 public class ArenaDupla extends Arena {
     private Usuario jogador3;
     private Usuario jogador4;
@@ -37,7 +38,7 @@ public class ArenaDupla extends Arena {
     public void turno(Usuario jogador, Carta[] mao, Usuario jogadorAliado) {
         saque(jogador, mao);
         compra(jogador);
-        posicionamento(jogador, getCampoJogador1());  
+        posicionamento(jogador, getCampoJogador1());
         Carta[] vetorAliado = jogadorAliado.getMao();
         for (int i = 0; i < vetorAliado.length; i++) {
             mao[i + 7] = vetorAliado[i];
@@ -125,5 +126,27 @@ public class ArenaDupla extends Arena {
             trocarTurno();
         }
         declararVencedor();
+    }
+
+    public void turno(Usuario jogador, Carta[] mao, Usuario[] aliados, Usuario[] inimigos) {
+        saque(jogador, mao);
+        compra(jogador);
+        posicionamento(jogador, getCampoJogador1());
+
+        // Adicionar cartas dos aliados ao vetor de mão
+        for (Usuario aliado : aliados) {
+            Carta[] maoAliado = aliado.getMao();
+            for (int i = 0; i < maoAliado.length; i++) {
+                mao[i + 7] = maoAliado[i];
+            }
+        }
+
+        // Adicionar cartas dos inimigos ao vetor de mão
+        for (Usuario inimigo : inimigos) {
+            Carta[] maoInimigo = inimigo.getMao();
+            for (int i = 0; i < maoInimigo.length; i++) {
+                mao[i + 7 + aliados.length * 7] = maoInimigo[i];
+            }
+        }
     }
 }
