@@ -1,4 +1,7 @@
 package exceptions;
 
-public class TimeOutException {
+public class TimeOutException extends Throwable {
+    public TimeOutException(String message) {
+        super(message);
+    }
 }

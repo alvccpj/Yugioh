@@ -1,4 +1,7 @@
 package exceptions;
 
-public class IrregularDeckException {
+public class IrregularDeckException extends Throwable{
+    public IrregularDeckException(String message) {
+        super(message);
+    }
 }

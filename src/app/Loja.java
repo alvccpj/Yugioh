@@ -1,4 +1,6 @@
 package app;
+import exceptions.InsuficientCoinException;
+
 import java.util.Random;
 
 public class Loja {
@@ -36,29 +38,30 @@ public class Loja {
         this.promocao = promocao;
     }
 
-    public void compraDeBooster(Usuario usuario, Inventario inventario) {
+    public void compraDeBooster(Usuario usuario, Inventario inventario) throws InsuficientCoinException {
         int precoBooster = promocao ? 15 : 10;
 
-        if (usuario.getCardcoinsUsuario() >= precoBooster) {
-            usuario.setCardcoinsUsuario(usuario.getCardcoinsUsuario() - precoBooster);
-
-            Carta[] boosterPack = gerarCartaAleatoria();
-
-            for (Carta cartaAleatoria : boosterPack) {
-                if (promocao) {
-                    double chanceCartaUnica = Math.random();
-                    if (chanceCartaUnica <= 0.01) {
-                        cartaAleatoria = criarCartaUnica(cartaAleatoria);
-                    }
-                }
-                adicionarCartaAoInventario(inventario, cartaAleatoria, usuario);
-            }
-
-            System.out.println("Booster comprado com sucesso!");
-        } else {
-            System.out.println("Você não tem cardcoins o suficiente para comprar o Booster!");
+        if (usuario.getCardcoinsUsuario() < precoBooster) {
+            throw new InsuficientCoinException("Você não tem cardcoins o suficiente para comprar o Booster!");
         }
+
+        usuario.setCardcoinsUsuario(usuario.getCardcoinsUsuario() - precoBooster);
+
+        Carta[] boosterPack = gerarCartaAleatoria();
+
+        for (Carta cartaAleatoria : boosterPack) {
+            if (promocao) {
+                double chanceCartaUnica = Math.random();
+                if (chanceCartaUnica <= 0.01) {
+                    cartaAleatoria = criarCartaUnica(cartaAleatoria);
+                }
+            }
+            adicionarCartaAoInventario(inventario, cartaAleatoria, usuario);
+        }
+
+        System.out.println("Booster comprado com sucesso!");
     }
+
 
 
     public void BoosterEspecial(Usuario usuario, Inventario inventario) {
