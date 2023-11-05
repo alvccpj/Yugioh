@@ -13,8 +13,9 @@ public class Usuario {
     private int manaMaxima;
     private int manaAtual;
     private Carta[] mao;
+    private int pontosVida;
 
-    public Usuario(String usuario, String cpf, String senha, int idade, char sexo, String email, int nivel, Inventario inventario, double cardcoinsUsuario, Deck decks, int manaMaxima, int manaAtual, Carta[] mao) {
+    public Usuario(String usuario, String cpf, String senha, int idade, char sexo, String email, int nivel, Inventario inventario, double cardcoinsUsuario, Deck decks, int manaMaxima, int manaAtual, Carta[] mao, int pontosVida) {
         this.usuario = usuario;
         this.cpf = cpf;
         this.senha = senha;
@@ -28,6 +29,11 @@ public class Usuario {
         this.manaMaxima = 0;
         this.manaAtual = 0;
         this.mao = new Carta[10];
+        this.pontosVida = 20;
+    }
+
+    public Usuario() {
+
     }
 
     public String getUsuario() {
@@ -132,6 +138,14 @@ public class Usuario {
 
     public void setMao(Carta[] mao) {
         this.mao = mao;
+    }
+
+    public int getPontosVida() {
+        return pontosVida;
+    }
+
+    public void setPontosVida(int pontosVida) {
+        this.pontosVida = pontosVida;
     }
 
     public void adicionarDeck(Deck novoDeck) {

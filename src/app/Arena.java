@@ -1,69 +1,160 @@
 package app;
+
 import java.util.Random;
 
 public class Arena {
-    private Usuario jogador1;
-    private Usuario jogador2;
-    private Deck deckJogador1;
-    private Deck deckJogador2;
+    protected Usuario jogador1;
+    protected Usuario jogador2;
+    protected Deck deckJogador1;
+    protected Deck deckJogador2;
     private Carta[][] campoJogador1;
     private Carta[][] campoJogador2;
-    private int pontosVidaJogador1;
-    private int pontosVidaJogador2;
     private Carta[] maoJogador1;
     private Carta[] maoJogador2;
     private int manaMaximaJogador1;
     private int manaMaximaJogador2;
-    private Carta[] cemiterioJogador1 = new Carta[100];
-    private Carta[] cemiterioJogador2 = new Carta[100];
+    protected Carta[] cemiterioJogador1;
+    protected Carta[] cemiterioJogador2;
     private boolean turnoJogador1;
 
-    public Arena(Usuario jogador1, Usuario jogador2) {
+    public Arena(Usuario jogador1, Usuario jogador2, Deck deckJogador1, Deck deckJogador2, Carta[][] campoJogador1, Carta[][] campoJogador2, Carta[] maoJogador1, Carta[] maoJogador2, int manaMaximaJogador1, int manaMaximaJogador2, Carta[] cemiterioJogador1, Carta[] cemiterioJogador2, boolean turnoJogador1) {
         this.jogador1 = jogador1;
         this.jogador2 = jogador2;
-        this.deckJogador1 = null;
-        this.deckJogador2 = null;
+        this.deckJogador1 = deckJogador1;
+        this.deckJogador2 = deckJogador2;
         this.campoJogador1 = new Carta[2][5];
         this.campoJogador2 = new Carta[2][5];
-        this.pontosVidaJogador1 = 20;
-        this.pontosVidaJogador2 = 20;
         this.maoJogador1 = new Carta[10];
         this.maoJogador2 = new Carta[10];
         this.manaMaximaJogador1 = 0;
         this.manaMaximaJogador2 = 0;
+        this.cemiterioJogador1 = new Carta[100];
+        this.cemiterioJogador2 = new Carta[100];
         this.turnoJogador1 = false;
     }
+
+    public Arena(Usuario jogador1, Usuario jogador2) {
+    }
+
     public Usuario getJogador1() {
         return jogador1;
+    }
+
+    public void setJogador1(Usuario jogador1) {
+        this.jogador1 = jogador1;
     }
 
     public Usuario getJogador2() {
         return jogador2;
     }
 
+    public void setJogador2(Usuario jogador2) {
+        this.jogador2 = jogador2;
+    }
+
+    public Deck getDeckJogador1() {
+        return deckJogador1;
+    }
+
+    public void setDeckJogador1(Deck deckJogador1) {
+        this.deckJogador1 = deckJogador1;
+    }
+
+    public Deck getDeckJogador2() {
+        return deckJogador2;
+    }
+
+    public void setDeckJogador2(Deck deckJogador2) {
+        this.deckJogador2 = deckJogador2;
+    }
+
+    public Carta[][] getCampoJogador1() {
+        return campoJogador1;
+    }
+
+    public void setCampoJogador1(Carta[][] campoJogador1) {
+        this.campoJogador1 = campoJogador1;
+    }
+
+    public Carta[][] getCampoJogador2() {
+        return campoJogador2;
+    }
+
+    public void setCampoJogador2(Carta[][] campoJogador2) {
+        this.campoJogador2 = campoJogador2;
+    }
+
+
+    public Carta[] getMaoJogador1() {
+        return maoJogador1;
+    }
+
+    public void setMaoJogador1(Carta[] maoJogador1) {
+        this.maoJogador1 = maoJogador1;
+    }
+
+    public Carta[] getMaoJogador2() {
+        return maoJogador2;
+    }
+
+    public void setMaoJogador2(Carta[] maoJogador2) {
+        this.maoJogador2 = maoJogador2;
+    }
+
+    public int getManaMaximaJogador1() {
+        return manaMaximaJogador1;
+    }
+
+    public void setManaMaximaJogador1(int manaMaximaJogador1) {
+        this.manaMaximaJogador1 = manaMaximaJogador1;
+    }
+
+    public int getManaMaximaJogador2() {
+        return manaMaximaJogador2;
+    }
+
+    public void setManaMaximaJogador2(int manaMaximaJogador2) {
+        this.manaMaximaJogador2 = manaMaximaJogador2;
+    }
+
+    public Carta[] getCemiterioJogador1() {
+        return cemiterioJogador1;
+    }
+
+    public void setCemiterioJogador1(Carta[] cemiterioJogador1) {
+        this.cemiterioJogador1 = cemiterioJogador1;
+    }
+
+    public Carta[] getCemiterioJogador2() {
+        return cemiterioJogador2;
+    }
+
+    public void setCemiterioJogador2(Carta[] cemiterioJogador2) {
+        this.cemiterioJogador2 = cemiterioJogador2;
+    }
+
+    public boolean isTurnoJogador1() {
+        return turnoJogador1;
+    }
+
+    public void setTurnoJogador1(boolean turnoJogador1) {
+        this.turnoJogador1 = turnoJogador1;
+    }
+
     public void iniciar() {
         sortearPrimeiroJogador();
-        while (getPontosVidaJogador1() > 0 && getPontosVidaJogador2() > 0) {
+        while (jogador1.getPontosVida() > 0 && jogador2.getPontosVida() > 0) {
             turno(jogador1, cemiterioJogador1);
             trocarTurno();
         }
         declararVencedor();
     }
 
-    public int getPontosVidaJogador1() {
-        return pontosVidaJogador1;
-    }
-
-    public int getPontosVidaJogador2() {
-        return pontosVidaJogador2;
-    }
     public void sortearPrimeiroJogador() {
         Random random = new Random();
         turnoJogador1 = random.nextBoolean();
     }
-    public Carta[][] getCampoJogador1() {
-        return campoJogador1;
-    }
+
 
     public void turno(Usuario jogador, Carta[] mao) {
         saque(jogador, mao);
@@ -75,7 +166,7 @@ public class Arena {
         if (jogador == jogador1) {
             if (jogador.getManaAtual() > 0) {
                 campo[0][0] = new Mana("Mana Genérica", "imagem", "Comum", 1, 1);
-                jogador.setManaAtual(jogador.getManaAtual() - 1); 
+                jogador.setManaAtual(jogador.getManaAtual() - 1);
             } else {
                 for (Carta carta : jogador.getMao()) {
                     if (carta != null) {
@@ -98,6 +189,7 @@ public class Arena {
     public void realizarTurnoPublic(Usuario jogadorAtacante, Usuario jogadorDefensor, Carta[] mao) {
         realizarTurno(jogadorAtacante, jogadorDefensor, mao);
     }
+
     private void realizarTurno(Usuario jogadorAtacante, Usuario jogadorDefensor, Carta[] mao) {
         saque(jogadorAtacante, mao);
         compra(jogadorAtacante);
@@ -178,11 +270,11 @@ public class Arena {
         turnoJogador1 = !turnoJogador1;
     }
 
-    private void declararVencedor() {
-        if (getPontosVidaJogador1() <= 0) {
+    public void declararVencedor() {
+        if (jogador1.getPontosVida() <= 0) {
             getJogador2().adicionarCardCoins(100);
             getJogador1().adicionarCardCoins(10);
-        } else if (getPontosVidaJogador2() <= 0) {
+        } else if (jogador2.getPontosVida() <= 0) {
             getJogador1().adicionarCardCoins(100);
             getJogador2().adicionarCardCoins(10);
         }

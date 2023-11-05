@@ -15,6 +15,10 @@ public class Main {
         u.setEmail("ViniTri@gmail.com");
         u.setNivel(20);
         u.setCardcoinsUsuario(600);
+        u.setDecks(null);
+        u.setManaAtual(0);
+        u.setManaMaxima(0);
+        u.getMao();
 
         new UsuarioDAO().cadastrarUsuario(u);
 
