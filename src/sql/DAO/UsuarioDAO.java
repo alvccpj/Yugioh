@@ -19,7 +19,7 @@ public class UsuarioDAO {
             ps.setString(2, Usuario.getCpf());
             ps.setString(3, Usuario.getSenha());
             ps.setInt(4, Usuario.getIdade());
-            ps.setString(5, Usuario.getSexo()); //ajeitar o set
+            ps.setString(5, String.valueOf(Usuario.getSexo()));
             ps.setString(6, Usuario.getEmail());
             ps.setInt(7, Usuario.getNivel());
             ps.setDouble(8, Usuario.getCardcoinsUsuario());
