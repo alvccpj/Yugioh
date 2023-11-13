@@ -63,7 +63,6 @@ public class Inventario {
 
     public void adicionarCartaAoCemiterio(Carta carta) {
 
-        // ainda nao tem instrução do cemiterio
     }
 
 
