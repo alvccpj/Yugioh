@@ -64,7 +64,7 @@ public class Loja {
         System.out.println("Booster comprado com sucesso!");
     }
 
-    private Carta[] gerarCartaAleatoria() {
+    public Carta[] gerarCartaAleatoria() {
         Carta[] booster = new Carta[5];
 
         for (int i = 0; i < 5; i++) {
