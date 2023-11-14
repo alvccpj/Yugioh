@@ -42,7 +42,7 @@ public class Loja {
         int precoBooster = promocao ? 15 : 10;
 
         if (usuario.getCardcoinsUsuario() < precoBooster) {
-            throw new InsuficientCoinException("Você não tem cardcoins o suficiente para comprar o Booster!");
+            throw new InsuficientCoinException();
         }
 
         usuario.setCardcoinsUsuario(usuario.getCardcoinsUsuario() - precoBooster);

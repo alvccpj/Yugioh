@@ -43,7 +43,7 @@ public class Lobby {
             // Resto da lógica para formar times e iniciar a arena
         } else {
             System.out.println("Tempo limite atingido. Nenhum adversário encontrado a tempo.");
-            throw new TimeOutException("Tempo limite excedido.");
+            throw new TimeOutException();
         }
         if (jogadores.size() >= 4) {
             List<Usuario> jogadoresDisponiveis = new ArrayList<>(jogadores);

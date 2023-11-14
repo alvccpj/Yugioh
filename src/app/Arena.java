@@ -24,7 +24,7 @@ public class Arena implements AtivacaoCarta {
         this.jogador1 = jogador1;
         this.jogador2 = jogador2;
         if (deckJogador1 == null || deckJogador1.getTamanho() == 0 || deckJogador2 == null || deckJogador2.getTamanho() == 0) {
-            throw new IrregularDeckException("Os decks de jogadores devem ser válidos.");
+            throw new IrregularDeckException();
         }
         this.campoJogador1 = new Carta[2][5];
         this.campoJogador2 = new Carta[2][5];
