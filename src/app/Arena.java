@@ -1,10 +1,11 @@
 package app;
 
 import exceptions.IrregularDeckException;
+import interfaces.AtivacaoCarta;
 
 import java.util.Random;
 
-public class Arena {
+public class Arena implements AtivacaoCarta {
     protected Usuario jogador1;
     protected Usuario jogador2;
     protected Deck deckJogador1;
@@ -147,6 +148,7 @@ public class Arena {
     public void iniciar() {
         sortearPrimeiroJogador();
         while (jogador1.getPontosVida() > 0 && jogador2.getPontosVida() > 0) {
+            ativacao();
             turno(jogador1, cemiterioJogador1);
             trocarTurno();
         }
@@ -282,6 +284,26 @@ public class Arena {
             getJogador2().adicionarCardCoins(10);
         }
     }
+
+    @Override
+    public void ativacao() {
+        for (Carta[] linha : campoJogador1) {
+            for (Carta carta : linha) {
+                if (carta != null && carta instanceof AtivacaoCarta) {
+                    ((AtivacaoCarta) carta).ativacao();
+                }
+            }
+        }
+
+        for (Carta[] linha : campoJogador2) {
+            for (Carta carta : linha) {
+                if (carta != null && carta instanceof AtivacaoCarta) {
+                    ((AtivacaoCarta) carta).ativacao();
+                }
+            }
+        }
+    }
+
 }
 
 
