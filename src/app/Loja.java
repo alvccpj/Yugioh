@@ -1,4 +1,6 @@
 package app;
+
+import enumerates.Raridade;
 import exceptions.InsuficientCoinException;
 
 import java.util.Random;
@@ -62,6 +64,32 @@ public class Loja {
         System.out.println("Booster comprado com sucesso!");
     }
 
+    private Carta[] gerarCartaAleatoria() {
+        Carta[] booster = new Carta[5];
+
+        for (int i = 0; i < 5; i++) {
+            double chance = Math.random();
+
+            Raridade raridade = obterRaridadePorChance(chance);
+            booster[i] = criarCarta(raridade);
+        }
+
+        return booster;
+    }
+
+    private Raridade obterRaridadePorChance(double chance) {
+        if (chance <= Raridade.COMUM.getProbabilidadeDrop()) {
+            return Raridade.COMUM;
+        } else if (chance <= Raridade.INCOMUM.getProbabilidadeDrop()) {
+            return Raridade.INCOMUM;
+        } else if (chance <= Raridade.RARA.getProbabilidadeDrop()) {
+            return Raridade.RARA;
+        } else if (chance <= Raridade.MUITO_RARA.getProbabilidadeDrop()) {
+            return Raridade.MUITO_RARA;
+        } else {
+            return Raridade.EPICA;
+        }
+    }
 
 
     public void BoosterEspecial(Usuario usuario, Inventario inventario) {
@@ -91,42 +119,6 @@ public class Loja {
         return null;
     }
 
-    public Carta[] gerarCartaAleatoria() {
-        int qtdCardsBoosterPack = 12;
-        Carta[] boosterPack = new Carta[qtdCardsBoosterPack];
-        Random random = new Random();
-
-        for (int posBoosterPack = 0; posBoosterPack < qtdCardsBoosterPack; posBoosterPack++) {
-            String[] nomesCartas = {"Carta 1", "Carta 2", "Carta 3", "Carta 4", "Carta 5"};
-            String nomeAleatorio = nomesCartas[random.nextInt(nomesCartas.length)];
-            int ataqueAleatorio = random.nextInt(10) + 1;
-            int defesaAleatoria = random.nextInt(10) + 1;
-            int raridadeAleatoria = random.nextInt(5);
-
-            boosterPack[posBoosterPack] = new Carta(nomeAleatorio, "imagem", "tipo",
-                    getRaridadeString(raridadeAleatoria), ataqueAleatorio, defesaAleatoria, 0, "ability", 0, 0);
-        }
-
-        return boosterPack;
-    }
-
-    private String getRaridadeString(int raridade) {
-        switch (raridade) {
-            case 0:
-                return "COMUM";
-            case 1:
-                return "INCOMUM";
-            case 2:
-                return "RARA";
-            case 3:
-                return "MUITO_RARA";
-            case 4:
-                return "EPICA";
-            default:
-                return null;
-        }
-    }
-
     public void adicionarCartaAoInventario(Inventario inventario, Carta carta, Usuario usuario) {
         int limiteCartasRepetidas = 3;
 
@@ -145,6 +137,10 @@ public class Loja {
 
     private int calcularValorCartasRepetidas(Carta carta) {
         return 10;
+    }
+
+    private Carta criarCarta(Raridade raridade) {
+        return new Carta(raridade);
     }
 
 }

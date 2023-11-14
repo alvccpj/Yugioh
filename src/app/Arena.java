@@ -181,7 +181,7 @@ public class Arena implements AtivacaoCarta {
 
                         campo[1][0] = carta;
                         jogador.removerCartaDaMao(carta);
-                        jogador.setManaMaxima(jogador.getManaMaxima() - carta.getMana());
+                        jogador.setManaMaxima(jogador.getManaMaxima() - carta.getManaDaCarta());
                         break;
                     }
                 }

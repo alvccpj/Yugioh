@@ -1,4 +1,5 @@
 package app;
+
 public class Usuario {
     private String usuario;
     private String cpf;

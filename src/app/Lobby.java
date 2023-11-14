@@ -10,7 +10,7 @@ public class Lobby {
     private List<Usuario> jogadores;
     private int maxJogadoresLobby;
     private String modalidadeJogo;
-    private long tempoLimiteEspera; // Tempo limite em milissegundos
+    private long tempoLimiteEspera;
     private static final long TEMPO_LIMITE_PADRAO = 60000;
 
     public Lobby(int maxJogadoresLobby) {
@@ -33,14 +33,13 @@ public class Lobby {
         long tempoInicial = System.currentTimeMillis();
 
         while (jogadores.size() < 4 && (System.currentTimeMillis() - tempoInicial) < tempoLimiteEspera) {
-            // Aguarde até encontrar adversários ou até atingir o tempo limite
+
         }
 
         if (jogadores.size() >= 4) {
             List<Usuario> jogadoresDisponiveis = new ArrayList<>(jogadores);
             jogadoresDisponiveis.remove(jogador);
 
-            // Resto da lógica para formar times e iniciar a arena
         } else {
             System.out.println("Tempo limite atingido. Nenhum adversário encontrado a tempo.");
             throw new TimeOutException();

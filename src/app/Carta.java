@@ -1,4 +1,6 @@
 package app;
+
+import enumerates.Raridade;
 import interfaces.AtivacaoCarta;
 
 public class Carta implements AtivacaoCarta {
@@ -24,6 +26,9 @@ public class Carta implements AtivacaoCarta {
         this.habilidade = habilidade;
         this.quantidade = quantidade;
         this.manaDaCarta = manaDaCarta;
+    }
+
+    public Carta(Raridade raridade) {
     }
 
     public String getNomeCarta() {
@@ -90,18 +95,6 @@ public class Carta implements AtivacaoCarta {
         this.habilidade = habilidade;
     }
 
-    public void getQuantidade(int quantidade) {
-        this.quantidade = quantidade;
-    }
-
-    public int getMana() {
-        return manaDaCarta;
-    }
-
-    public void setMana(int mana) {
-        this.manaDaCarta = mana;
-    }
-
     public int getQuantidade() {
         return quantidade;
     }
@@ -112,6 +105,14 @@ public class Carta implements AtivacaoCarta {
         } else {
             throw new IllegalArgumentException("A quantidade deve estar entre 0 e 3, exceto para mana.");
         }
+    }
+
+    public int getManaDaCarta() {
+        return manaDaCarta;
+    }
+
+    public void setManaDaCarta(int manaDaCarta) {
+        this.manaDaCarta = manaDaCarta;
     }
 
     @Override

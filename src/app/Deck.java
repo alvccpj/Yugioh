@@ -36,10 +36,6 @@ public class Deck {
         this.disponibilidade = disponibilidade;
     }
 
-    public boolean isDisponivel() {
-        return disponibilidade;
-    }
-
     public void verificarDisponibilidade() {
         if (cartas.length >= 60 && verificarCartasRepetidas()) {
             disponibilidade = true;
