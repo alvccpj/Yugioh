@@ -61,9 +61,7 @@ public class Inventario {
         }
     }
 
-    public void adicionarCartaAoCemiterio(Carta carta) {
-
-    }
+    
 
 
     public int contarCartasIguais(Carta carta) {

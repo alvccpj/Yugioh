@@ -154,7 +154,9 @@ public class Arena implements AtivacaoCarta {
         }
         declararVencedor();
     }
+    public void adicionarCartaAoCemiterio(Carta carta) {
 
+    }
     public void sortearPrimeiroJogador() {
         Random random = new Random();
         turnoJogador1 = random.nextBoolean();

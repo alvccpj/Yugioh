@@ -172,9 +172,7 @@ public class Usuario {
         this.cardcoinsUsuario += valor;
     }
 
-    public void adicionarAoCemiterio(Carta carta) {
-        this.inventario.adicionarCartaAoCemiterio(carta);
-    }
+    
 
     public void adicionarManaMaxima(int quantidade) {
         this.manaMaxima += quantidade;

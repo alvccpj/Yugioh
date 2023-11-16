@@ -70,6 +70,18 @@ public class Lobby {
     }
 
     public void iniciarArena(List<Usuario> time1, List<Usuario> time2, String modalidadeJogo) {
-        // Implemente a lógica para iniciar a arena com as duas equipes
+        if (modalidadeJogo.equals("Jogo Normal")) {
+            Arena arena = new Arena(time1.get(0), time2.get(0));
+            arena.iniciar();
+        } else if (modalidadeJogo.equals("Modo em Dupla")) {
+            if (time1.size() == 2 && time2.size() == 2) {
+                ArenaDupla arenaDupla = new ArenaDupla(time1.get(0), time1.get(1), time2.get(0), time2.get(1));
+                arenaDupla.iniciar();
+            } else {
+                System.out.println("Número incorreto de jogadores para o modo em dupla.");
+            }
+        } else {
+            System.out.println("Modalidade de jogo não reconhecida.");
+        }
     }
 }

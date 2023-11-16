@@ -2,9 +2,6 @@ package app;
 
 import enumerates.Raridade;
 import exceptions.InsuficientCoinException;
-
-import java.util.Random;
-
 public class Loja {
     private String numeroCartao;
     private String codigoVerificador;

@@ -1,7 +1,6 @@
 package app;
 
 import sql.DAO.UsuarioDAO;
-import app.Usuario;
 
 public class Main {
     public static void main(String[] args) throws Exception { 
