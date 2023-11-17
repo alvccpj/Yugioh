@@ -1,7 +1,9 @@
 package app;
+import interfaces.AtivacaoCarta;
+
 import java.util.Random;
 
-public class CartaUnique extends Carta {
+public class CartaUnique extends Carta implements AtivacaoCarta {
     private String habilidadeExtra;
     private String habilidade1;
     private String habilidade2;
@@ -11,7 +13,6 @@ public class CartaUnique extends Carta {
         this.habilidadeExtra = habilidadeExtra;
         this.habilidade1 = habilidade1;
         this.habilidade2 = habilidade2;
-        this.habilidade1 = gerarHabilidadeAleatoria();
     }
 
     public String getHabilidadeExtra() {
