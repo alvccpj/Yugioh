@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 public class Yugioh extends Application {
 
-    private Usuario u;  // Suponha que você tenha uma instância de Usuario
+    private Usuario u;
 
     public static void main(String[] args) {
         launch(args);
