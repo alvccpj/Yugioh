@@ -6,14 +6,13 @@ public class Main {
     public static void main(String[] args) throws Exception {
         //Salvando dados do usuario com SQL
         Usuario u = new Usuario();
-        u.setUsuario("Jheymesson");
-        u.setCpf("vinitrigueiro");
-        u.setSenha("123456789v");
-        u.setIdade(30);
+        u.setUsuario("UsuarioExemplo");
+        u.setCpf("00011122233");
+        u.setSenha("senha");
+        u.setIdade(20);
         u.setSexo('M');
-        u.setEmail("ViniTri@gmail.com");
-        u.setNivel(20);
-        u.setCardcoinsUsuario(600);
+        u.setEmail("exemploemail@gmail.com");
+
 
         new UsuarioDAO().cadastrarUsuario(u);
 
