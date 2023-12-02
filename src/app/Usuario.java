@@ -172,7 +172,6 @@ public class Usuario {
         this.cardcoinsUsuario += valor;
     }
 
-    
 
     public void adicionarManaMaxima(int quantidade) {
         this.manaMaxima += quantidade;
