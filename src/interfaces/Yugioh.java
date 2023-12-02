@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 public class Yugioh extends Application {
 
     private Usuario u;
+    private TextField usernameInput;
 
     public static void main(String[] args) {
         launch(args);
@@ -65,7 +66,16 @@ public class Yugioh extends Application {
     }
 
     private void handleLogin(String username, String password) {
-       
+        // Verificar se o nome de usuário e a senha estão corretos
+        if (username.equals("alvaro") && password.equals("alvaro123")) {
+            System.out.println("Login bem-sucedido. Fechando a interface.");
+            // Fechar a interface
+            Stage stage = (Stage) usernameInput.getScene().getWindow();
+            stage.close();
+        } else {
+            // Exibir mensagem de erro
+            System.out.println("Login incorreto. Por favor, tente novamente.");
+        }
     }
 
     private void handleRegistration(String username) {
