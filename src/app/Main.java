@@ -17,15 +17,18 @@ public class Main {
 
         new UsuarioDAO().cadastrarUsuario(u);
 
-        Usuario jogador1 = new Usuario("Álvaro Jordão", "123456789", "senha123", 20, 'M', "alvaro@unicap.com", 1, new Inventario(), 0.0, new Deck[5], 0, 0, new Carta[10], 20);
-        Usuario jogador2 = new Usuario("Vinícius Trigueiro", "173456789", "senha1234", 21, 'M', "viniciustri@unicap.com", 1, new Inventario(), 0.0, new Deck[5], 0, 0, new Carta[10], 20);
-        Usuario jogador3 = new Usuario("Vinícius Rocha", "90867543565", "senha1235", 24, 'M', "rocha@unicap.com", 1, new Inventario(), 0.0, new Deck[5], 0, 0, new Carta[10], 20);
-        Usuario jogador4 = new Usuario("João Pedro", "129996789", "senha12376", 25, 'M', "joaopedro@unicap.com", 1, new Inventario(), 0.0, new Deck[5], 0, 0, new Carta[10], 20);
+        Usuario jogador1 = new Usuario("Álvaro Jordão", "123456789", "senha123", 20, 'M', "alvaro@unicap.com", 1,
+                new Inventario(new Carta[200], 1, 0), 0.0, new Deck[5], 0, 0, new Carta[10], 20);
 
-        Inventario inventarioJogador1 = new Inventario(new Carta[200], 1, 0);
-        Inventario inventarioJogador2 = new Inventario(new Carta[200], 1, 0);
-        Inventario inventarioJogador3 = new Inventario(new Carta[200], 1, 0);
-        Inventario inventarioJogador4 = new Inventario(new Carta[200], 1, 0);
+        Usuario jogador2 = new Usuario("Vinícius Trigueiro", "173456789", "senha1234", 21, 'M', "viniciustri@unicap.com", 1,
+                new Inventario(new Carta[200], 1, 0), 0.0, new Deck[5], 0, 0, new Carta[10], 20);
+
+        Usuario jogador3 = new Usuario("Vinícius Rocha", "90867543565", "senha1235", 24, 'M', "viniciusrocha@unicap.com", 1,
+                new Inventario(new Carta[200], 1, 0), 0.0, new Deck[5], 0, 0, new Carta[10], 20);
+
+        Usuario jogador4 = new Usuario("Anna Luiza", "129996789", "senha12376", 25, 'F', "annaluiza@unicap.com", 1,
+                new Inventario(new Carta[200], 1, 0), 0.0, new Deck[5], 0, 0, new Carta[10], 20);
+
 
         Carta cartaJogador1 = new Carta();
         Carta cartaJogador2 = new Carta();
