@@ -6,8 +6,8 @@ public class Inventario {
 
     public Inventario(Carta[] cartasInventario, int nivelAtual, int cardcoinsInventario) {
         this.cartasInventario = new Carta[200];
-        this.nivelAtual = nivelAtual;
-        this.cardcoinsInventario = cardcoinsInventario;
+        this.nivelAtual = 1;
+        this.cardcoinsInventario = 0;
     }
 
     public Inventario() {
